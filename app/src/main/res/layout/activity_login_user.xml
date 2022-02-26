@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".activities.main.LoginUserActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="112dp"
+        android:src="@drawable/icon_main_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginRight="40dp"
+        android:hint="Usuario"
+        android:textColor="#000"
+        android:textColorHint="#009688"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginRight="40dp"
+        android:hint="Contraseña"
+        android:textColor="#000"
+        android:textColorHint="#009688"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <Button
+        android:id="@+id/btn_signIn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#4CAF50"
+        android:text="Ingresar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintVertical_bias="0.374" />
+
+    <Button
+        android:id="@+id/btn_signUp"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#E91E63"
+        android:text="Registrarse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signIn"
+        app:layout_constraintVertical_bias="0.109" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

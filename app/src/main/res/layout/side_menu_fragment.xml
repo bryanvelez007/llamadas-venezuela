@@ -200,30 +200,6 @@
                     android:layout_height="1dp"
                     android:background="?dividerColor" />
 
-                <LinearLayout
-                    android:onClick="@{recordingsClickListener}"
-                    android:visibility="@{viewModel.showRecordings ? View.VISIBLE : View.GONE}"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp">
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:padding="10dp"
-                        android:contentDescription="@string/recordings"
-                        android:src="@drawable/menu_recordings" />
-
-                    <TextView
-                        android:text="@string/recordings"
-                        style="@style/standard_text_font"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="16dp" />
-
-                </LinearLayout>
-
                 <View
                     android:visibility="@{viewModel.showRecordings ? View.VISIBLE : View.GONE}"
                     android:layout_width="match_parent"
