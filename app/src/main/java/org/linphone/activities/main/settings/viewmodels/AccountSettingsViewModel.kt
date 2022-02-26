@@ -379,11 +379,11 @@ class AccountSettingsViewModel(val account: Account) : GenericSettingsViewModel(
     val escapePlusListener = object : SettingListenerStub() {
         override fun onBoolValueChanged(newValue: Boolean) {
             val params = account.params.clone()
-            params.isDialEscapePlusEnabled = newValue
+            params.isDialEscapePlusEnabled = true
             account.params = params
         }
     }
-    val escapePlus = MutableLiveData<Boolean>()
+    val escapePlus = MutableLiveData<Boolean>(false)
 
     val linkPhoneNumberListener = object : SettingListenerStub() {
         override fun onClicked() {
@@ -466,7 +466,7 @@ class AccountSettingsViewModel(val account: Account) : GenericSettingsViewModel(
         expires.value = params.expires
         prefix.value = params.internationalPrefix
         dialPrefix.value = params.useInternationalPrefixForCallsAndChats
-        escapePlus.value = params.isDialEscapePlusEnabled
+        escapePlus.value = true
 
         conferenceFactoryUri.value = params.conferenceFactoryUri
         audioVideoConferenceFactoryUri.value = params.audioVideoConferenceFactoryAddress?.asStringUriOnly()

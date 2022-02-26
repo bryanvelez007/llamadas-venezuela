@@ -43,7 +43,7 @@ class GenericLoginViewModel(private val accountCreator: AccountCreator) : ViewMo
 
     val password = MutableLiveData<String>()
 
-    val domain = MutableLiveData<String>()
+    val domain = MutableLiveData<String>("voip.llamadasvenezuela.com:5077")
 
     val displayName = MutableLiveData<String>()
 
@@ -88,7 +88,7 @@ class GenericLoginViewModel(private val accountCreator: AccountCreator) : ViewMo
     }
 
     init {
-        transport.value = TransportType.Tls
+        transport.value = TransportType.Udp
 
         loginEnabled.value = false
         loginEnabled.addSource(username) {
@@ -151,6 +151,6 @@ class GenericLoginViewModel(private val accountCreator: AccountCreator) : ViewMo
     }
 
     private fun isLoginButtonEnabled(): Boolean {
-        return username.value.orEmpty().isNotEmpty() && domain.value.orEmpty().isNotEmpty() && password.value.orEmpty().isNotEmpty()
+        return username.value.orEmpty().isNotEmpty() && password.value.orEmpty().isNotEmpty()
     }
 }

@@ -236,7 +236,7 @@
                     layout="@layout/settings_widget_switch"
                     linphone:title="@{@string/account_settings_escape_plus_title}"
                     linphone:listener="@{viewModel.escapePlusListener}"
-                    linphone:checked="@={viewModel.escapePlus}"/>
+                    linphone:checked="@={viewModel.escapePlus}" />
 
                 <include
                     layout="@layout/settings_widget_text"

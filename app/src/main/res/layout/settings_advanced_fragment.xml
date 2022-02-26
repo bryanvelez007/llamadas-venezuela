@@ -127,7 +127,7 @@
                     layout="@layout/settings_widget_switch"
                     linphone:title="@{@string/advanced_settings_auto_start_title}"
                     linphone:listener="@{viewModel.autoStartListener}"
-                    linphone:checked="@={viewModel.autoStart}"/>
+                    linphone:checked="false"/>
 
                 <include
                     layout="@layout/settings_widget_list"

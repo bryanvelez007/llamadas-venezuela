@@ -90,10 +90,11 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="invisible"
                     android:hint="@string/domain">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:text="voip.llamadasvenezuela.com:5077"
+                        android:text="@={viewModel.domain}"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
                         android:inputType="textUri"
@@ -102,10 +103,11 @@
                         android:layout_height="wrap_content"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
-<!--
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="invisible"
                     android:hint="@string/assistant_display_name_optional">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -118,7 +120,7 @@
                         android:layout_height="wrap_content"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
--->
+
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -131,24 +133,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
+                        android:visibility="invisible"
                         android:text="@string/transport"
                         android:textAllCaps="true" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:checked="true"
+                        android:checked="@{viewModel.transport == TransportType.Udp}"
                         android:onClick="@{() -> viewModel.setTransport(TransportType.Udp)}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:visibility="invisible"
                         android:textColor="?attr/primaryTextColor"
                         android:text="@string/transport_udp" />
-<!--
+
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         android:checked="@{viewModel.transport == TransportType.Tcp}"
                         android:onClick="@{() -> viewModel.setTransport(TransportType.Tcp)}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:visibility="invisible"
                         android:textColor="?attr/primaryTextColor"
                         android:text="@string/transport_tcp" />
 
@@ -158,9 +163,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:visibility="invisible"
                         android:textColor="?attr/primaryTextColor"
                         android:text="@string/transport_tls" />
--->
+
                 </RadioGroup>
 
                 <TextView
@@ -182,7 +188,7 @@
 
         <include
             layout="@layout/wait_layout"
-            bind:visibility="@{viewModel.waitForServerAnswer}"/>
+            bind:visibility="@{viewModel.waitForServerAnswer}" />
 
     </RelativeLayout>
 
