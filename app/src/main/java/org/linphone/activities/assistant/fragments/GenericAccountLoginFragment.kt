@@ -21,7 +21,9 @@ package org.linphone.activities.assistant.fragments
 
 import android.app.Dialog
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import org.linphone.LinphoneApplication.Companion.coreContext
 import org.linphone.R
@@ -44,6 +46,12 @@ class GenericAccountLoginFragment : GenericFragment<AssistantGenericAccountLogin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
+        val userName = prefs.getString("username", "")
+        val password = prefs.getString("password", "")
+        val isLoged = prefs.getString("isLoged", "default")
+
+        Toast.makeText(activity, "user: " + userName + "pass: " + password, Toast.LENGTH_SHORT).show()
         binding.lifecycleOwner = viewLifecycleOwner
 
         sharedViewModel = requireActivity().run {
@@ -80,6 +88,7 @@ class GenericAccountLoginFragment : GenericFragment<AssistantGenericAccountLogin
                     dialog.dismiss()
                 }
 
+                /*
                 dialogViewModel.showDeleteButton(
                     {
                         viewModel.continueEvenIfInvalidCredentials()
@@ -87,7 +96,7 @@ class GenericAccountLoginFragment : GenericFragment<AssistantGenericAccountLogin
                     },
                     getString(R.string.assistant_continue_even_if_credentials_invalid)
                 )
-
+*/
                 dialog.show()
             }
         }
@@ -99,5 +108,8 @@ class GenericAccountLoginFragment : GenericFragment<AssistantGenericAccountLogin
                 (requireActivity() as AssistantActivity).showSnackBar(message)
             }
         }
+
+        viewModel.username.value = userName
+        viewModel.password.value = password
     }
 }

@@ -19,14 +19,20 @@
  */
 package org.linphone.activities.main.fragments
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import org.linphone.LinphoneApplication.Companion.coreContext
 import org.linphone.R
 import org.linphone.activities.GenericFragment
+import org.linphone.activities.main.LoginUserActivity
 import org.linphone.activities.main.viewmodels.SharedMainViewModel
 import org.linphone.activities.main.viewmodels.StatusViewModel
+import org.linphone.core.RegistrationState
 import org.linphone.core.tools.Log
 import org.linphone.databinding.StatusFragmentBinding
 import org.linphone.utils.Event
@@ -69,5 +75,28 @@ class StatusFragment : GenericFragment<StatusFragmentBinding>() {
         }
 
         onBackPressedCallback.isEnabled = false
+    }
+
+    fun verifyStatusLogin(state: RegistrationState) {
+        val nameFile = requireContext().packageName + "_preferences"
+        val preferences = this.requireActivity().getSharedPreferences(nameFile, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+
+        if (RegistrationState.Ok == state) {
+            Toast.makeText(activity, "OKKKKKKKKKKK" + state, Toast.LENGTH_SHORT).show()
+            editor.putString("isLoged", "yes")
+            editor.apply()
+            editor.commit()
+        }
+
+        if (RegistrationState.Failed == state) {
+            Toast.makeText(activity, "FAILED" + state, Toast.LENGTH_SHORT).show()
+            editor.putString("isLoged", "no")
+            editor.apply()
+            editor.commit()
+
+            val intent = Intent(activity, LoginUserActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -92,7 +92,7 @@
         android:label="PhoneAccountCreationFragment" >
         <action
             android:id="@+id/action_phoneAccountCreationFragment_to_phoneAccountValidationFragment"
-            app:destination="@id/phoneAccountValidationFragment" />
+            app:destination="@id/genericAccountLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/phoneAccountValidationFragment"

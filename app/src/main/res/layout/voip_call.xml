@@ -164,20 +164,6 @@
                 app:layout_constraintWidth_max="@dimen/voip_views_max_width">
 
                 <ImageView
-                    android:onClick="@{() -> viewModel.toggleRecording()}"
-                    android:selected="@{viewModel.isRecording}"
-                    android:visibility="@{controlsViewModel.fullScreenMode || controlsViewModel.pipMode ? View.GONE : View.VISIBLE}"
-                    android:layout_height="40dp"
-                    android:layout_width="40dp"
-                    android:background="@drawable/button_call_recording_background"
-                    android:src="@drawable/icon_call_record"
-                    android:contentDescription="@string/content_description_toggle_recording"
-                    android:padding="7dp"
-                    android:layout_margin="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <ImageView
                     android:onClick="@{() -> viewModel.togglePause()}"
                     android:selected="@{viewModel.isPaused}"
                     android:enabled="@{viewModel.isPaused || viewModel.canBePaused}"

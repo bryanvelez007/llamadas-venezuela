@@ -19,14 +19,25 @@
  */
 package org.linphone.activities.assistant.fragments
 
+import android.app.Activity
+import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.View
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import org.linphone.R
 import org.linphone.activities.assistant.AssistantActivity
 import org.linphone.activities.assistant.viewmodels.PhoneAccountCreationViewModel
 import org.linphone.activities.assistant.viewmodels.PhoneAccountCreationViewModelFactory
 import org.linphone.activities.assistant.viewmodels.SharedAssistantViewModel
+import org.linphone.activities.navigateToGenericLogin
 import org.linphone.activities.navigateToPhoneAccountValidation
 import org.linphone.databinding.AssistantPhoneAccountCreationFragmentBinding
 import org.linphone.mediastream.Version
@@ -42,6 +53,26 @@ class PhoneAccountCreationFragment :
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
+        // navigateToPhoneAccountValidation()
+        Toast.makeText(activity, "SIIIIIIIIIII", Toast.LENGTH_SHORT).show()
+
+        val myWebView: WebView = view.findViewById(R.id.WebView1)
+
+        myWebView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(
+                view: WebView,
+                url: String
+            ): Boolean {
+                view.loadUrl(url)
+                return true
+            }
+        }
+        myWebView.webViewClient = MyWebViewClient(requireActivity())
+        myWebView.loadUrl("http://voip.llamadasvenezuela.com/mbilling/index.php/signup/add")
+        myWebView.settings.javaScriptEnabled = true
+        myWebView.settings.allowContentAccess = true
+        myWebView.settings.domStorageEnabled = true
+        myWebView.settings.useWideViewPort = true
 
         sharedViewModel = requireActivity().run {
             ViewModelProvider(this)[SharedAssistantViewModel::class.java]
@@ -54,7 +85,7 @@ class PhoneAccountCreationFragment :
         binding.viewModel = viewModel
 
         binding.setInfoClickListener {
-            showPhoneNumberInfoDialog()
+            navigateToPhoneAccountValidation()
         }
 
         binding.setSelectCountryClickListener {
@@ -68,7 +99,7 @@ class PhoneAccountCreationFragment :
                 val args = Bundle()
                 args.putBoolean("IsCreation", true)
                 args.putString("PhoneNumber", viewModel.accountCreator.phoneNumber)
-                navigateToPhoneAccountValidation(args)
+                navigateToGenericLogin()
             }
         }
 
@@ -83,5 +114,40 @@ class PhoneAccountCreationFragment :
         if (Version.sdkAboveOrEqual(Version.API23_MARSHMALLOW_60)) {
             checkPermissions()
         }
+    }
+}
+
+class MyWebViewClient internal constructor(private val activity: Activity) : WebViewClient() {
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+        val url: String = request?.url.toString()
+        if (url.contains("username")) {
+            val userName = url.split("username=")[1].split("&")[0]
+            val password = url.split("password=")[1].split("&")[0]
+            Toast.makeText(activity, "Username: " + userName + "Password: " + password, Toast.LENGTH_SHORT).show()
+            val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString("username", userName)
+            editor.putString("password", password)
+            editor.apply()
+            editor.commit()
+
+            // context.startActivity(intent)
+        }
+        view?.loadUrl(url)
+        return true
+    }
+
+    override fun shouldOverrideUrlLoading(webView: WebView, url: String): Boolean {
+        webView.loadUrl(url)
+        return true
+    }
+
+    override fun onReceivedError(
+        view: WebView,
+        request: WebResourceRequest,
+        error: WebResourceError
+    ) {
+        Toast.makeText(activity, "Got Error! $error", Toast.LENGTH_SHORT).show()
     }
 }

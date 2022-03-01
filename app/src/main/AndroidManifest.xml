@@ -46,7 +46,7 @@ package="org.linphone">
     android:allowNativeHeapPointerTagging="false">
 
     <activity
-        android:name=".activities.main.MainActivity"
+        android:name=".activities.main.LoginUserActivity"
         android:exported="true"
         android:launchMode="singleTask"
         android:windowSoftInputMode="adjustResize"
@@ -125,7 +125,7 @@ package="org.linphone">
     </activity>
 
     <activity
-        android:name=".activities.main.LoginUserActivity"
+        android:name=".activities.main.MainActivity"
         android:exported="true"
         android:launchMode="singleTask"
         android:windowSoftInputMode="adjustResize">

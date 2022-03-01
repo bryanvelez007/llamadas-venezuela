@@ -144,7 +144,7 @@
                         android:visibility="@{viewModel.showVideoSettings ? View.VISIBLE : View.GONE}"
                         linphone:listener="@{viewModel.videoSettingsListener}"
                         linphone:title="@{@string/settings_video_title}"
-                        linphone:icon="@{@drawable/settings_video}" />
+                         />
 
                     <include
                         layout="@layout/settings_widget_basic"

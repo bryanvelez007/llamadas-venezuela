@@ -45,16 +45,16 @@
             android:adjustViewBounds="true" />
 
         <TextView
-            android:text="@{viewModel.registrationStatusText, default=@string/status_not_connected}"
-            android:onClick="@{refreshClickListener}"
-            android:textColor="?attr/accentTextColor"
-            android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/status_led"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp" />
+            android:onClick="@{refreshClickListener}"
+            android:paddingLeft="5dp"
+            android:text="@{viewModel.registrationStatusText, default=@string/status_not_connected}"
+            android:textColor="?attr/accentTextColor"
+            android:textSize="15sp" />
 
         <ImageView
             android:layout_width="wrap_content"

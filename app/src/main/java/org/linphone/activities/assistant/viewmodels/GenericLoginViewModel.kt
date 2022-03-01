@@ -40,6 +40,7 @@ class GenericLoginViewModelFactory(private val accountCreator: AccountCreator) :
 
 class GenericLoginViewModel(private val accountCreator: AccountCreator) : ViewModel() {
     val username = MutableLiveData<String>()
+    val fakeTitle = MutableLiveData<String>()
 
     val password = MutableLiveData<String>()
 
@@ -91,6 +92,7 @@ class GenericLoginViewModel(private val accountCreator: AccountCreator) : ViewMo
         transport.value = TransportType.Udp
 
         loginEnabled.value = false
+
         loginEnabled.addSource(username) {
             loginEnabled.value = isLoginButtonEnabled()
         }

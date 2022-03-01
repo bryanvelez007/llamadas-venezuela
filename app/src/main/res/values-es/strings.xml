@@ -25,7 +25,7 @@
     <string name="domain">Dominio</string>
     <string name="sip_address">Dirección SIP</string>
     <string name="sip_addresses">Direcciones SIP</string>
-    <string name="cancel">Cancelar</string>
+    <string name="cancel">Intentar Nuevamente</string>
     <plurals name="days">
         <item quantity="one">%d día</item>
         <item quantity="other">%d días</item>
@@ -44,7 +44,7 @@
     <string name="status_error">Conexión fallida</string>
     <string name="no_account_configured">Cuenta no configurada</string>
     <string name="about">Acerca</string>
-    <string name="assistant">Asistente</string>
+    <string name="assistant">Iniciar Sesion</string>
     <string name="recordings">Grabaciones</string>
     <string name="settings">Configuraciones</string>
     <string name="no_call_history">No hay llamadas en el historial</string>
@@ -216,7 +216,7 @@
     <string name="assistant_error_username_already_exists">Nombre de usuario ya utilizado</string>
     <string name="assistant_error_phone_number_already_exists">Ya hay una cuenta que utiliza este número</string>
     <string name="content_description_show_call_details">Ir a los detalles de la llamada</string>
-    <string name="assistant_error_invalid_credentials">La cuenta no existe o la contraseña no coincide</string>
+    <string name="assistant_error_invalid_credentials">La cuenta no existe o esta introduciendo su usuario o clave mal verifique y intente nuevamente</string>
     <string name="assistant_create_account_part_1">Por favor, confirme el código de su país e introduzca su número de teléfono</string>
     <string name="assistant_create_account_part_email">Por favor, introduzca un nombre de usuario, correo electrónico y contraseña para su &appName; cuenta</string>
     <string name="assistant_create_account_part_2">Te hemos enviado un SMS con un código de validación a tu número de teléfono:</string>

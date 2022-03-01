@@ -33,9 +33,8 @@ class GenericAccountWarningFragment : GenericFragment<AssistantGenericAccountWar
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
-
+        navigateToGenericLogin()
         binding.setUnderstoodClickListener {
-            navigateToGenericLogin()
         }
     }
 }

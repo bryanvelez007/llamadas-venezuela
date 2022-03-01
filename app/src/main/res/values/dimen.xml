@@ -34,7 +34,7 @@
     <dimen name="setting_subtitle_min_size">8sp</dimen>
     <dimen name="setting_subtitle_max_size">14sp</dimen>
     <dimen name="settings_granularity_step">1sp</dimen>
-    <dimen name="voip_buttons_fragment_size">50dp</dimen>
+    <dimen name="voip_buttons_fragment_size">80dp</dimen>
     <dimen name="voip_remote_margin">10dp</dimen>
     <dimen name="voip_remote_margin_full_screen">0dp</dimen>
     <dimen name="voip_top_bar_size">60dp</dimen>

@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/txtUsername"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="40dp"
@@ -33,8 +33,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+
+
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/txtPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="40dp"
@@ -45,7 +47,7 @@
         android:textColorHint="#009688"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
 
     <Button
         android:id="@+id/btn_signIn"
@@ -57,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword"
         app:layout_constraintVertical_bias="0.374" />
 
     <Button

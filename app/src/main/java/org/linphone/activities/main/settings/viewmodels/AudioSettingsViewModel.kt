@@ -223,7 +223,7 @@ class AudioSettingsViewModel : GenericSettingsViewModel() {
                 labels.add(audioDevice.id)
                 values.add(audioDevice)
                 if (audioDevice.id == default.id) {
-                    inputAudioDeviceIndex.value = index
+                    inputAudioDeviceIndex.value = 2
                 }
                 index += 1
             }

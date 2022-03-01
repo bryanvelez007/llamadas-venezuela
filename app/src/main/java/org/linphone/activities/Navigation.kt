@@ -1173,14 +1173,22 @@ internal fun EmailAccountValidationFragment.navigateToAccountLinking(args: Bundl
     }
 }
 
-internal fun PhoneAccountCreationFragment.navigateToPhoneAccountValidation(args: Bundle?) {
+internal fun PhoneAccountCreationFragment.navigateToPhoneAccountValidation() {
     if (findNavController().currentDestination?.id == R.id.phoneAccountCreationFragment) {
         findNavController().navigate(
             R.id.action_phoneAccountCreationFragment_to_phoneAccountValidationFragment,
-            args,
+            null,
             popupTo()
         )
     }
+}
+
+internal fun PhoneAccountCreationFragment.navigateToGenericLogin() {
+    findNavController().navigate(
+        R.id.action_genericAccountWarningFragment_to_genericAccountLoginFragment,
+        null,
+        popupTo(R.id.welcomeFragment, popUpInclusive = false)
+    )
 }
 
 internal fun PhoneAccountValidationFragment.navigateToAccountSettings(args: Bundle?) {

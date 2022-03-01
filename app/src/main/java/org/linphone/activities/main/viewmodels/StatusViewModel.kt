@@ -35,6 +35,7 @@ open class StatusViewModel : ViewModel() {
     val voiceMailCount = MutableLiveData<Int>()
 
     private val listener: CoreListenerStub = object : CoreListenerStub() {
+
         override fun onAccountRegistrationStateChanged(
             core: Core,
             account: Account,
@@ -81,7 +82,23 @@ open class StatusViewModel : ViewModel() {
         if (defaultAccount != null) {
             state = defaultAccount.state
         }
+
         updateDefaultAccountRegistrationStatus(state)
+    }
+
+    fun hello(): (RegistrationState) {
+        val core = coreContext.core
+        core.addListener(listener)
+
+        var state: RegistrationState = RegistrationState.None
+        val defaultAccount = core.defaultAccount
+        if (defaultAccount != null) {
+            state = defaultAccount.state
+        }
+
+        // Toast.makeText(coreContext.context, "" + state, Toast.LENGTH_LONG).show()
+
+        return state
     }
 
     override fun onCleared() {
@@ -99,6 +116,7 @@ open class StatusViewModel : ViewModel() {
     }
 
     private fun getStatusIconText(state: RegistrationState): Int {
+        // Toast.makeText(coreContext.context, "" + state, Toast.LENGTH_LONG).show()
         return when (state) {
             RegistrationState.Ok -> R.string.status_connected
             RegistrationState.Progress -> R.string.status_in_progress
