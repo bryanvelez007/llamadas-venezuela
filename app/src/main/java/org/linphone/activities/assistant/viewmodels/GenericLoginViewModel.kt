@@ -56,6 +56,8 @@ class GenericLoginViewModel(private val accountCreator: AccountCreator) : ViewMo
 
     val leaveAssistantEvent = MutableLiveData<Event<Boolean>>()
 
+    val isSuccessfull = MutableLiveData<Boolean>()
+
     val invalidCredentialsEvent: MutableLiveData<Event<Boolean>> by lazy {
         MutableLiveData<Event<Boolean>>()
     }

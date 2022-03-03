@@ -25,18 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/top_bar_fragment"
-            android:name="org.linphone.activities.assistant.fragments.TopBarFragment"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/main_activity_top_bar_size"
-            android:layout_alignParentTop="true"
-            tools:layout="@layout/assistant_top_bar_fragment" />
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/top_bar_fragment">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,16 +39,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/assistant_welcome_title"
                     android:paddingTop="10dp"
+                    android:text="@string/assistant_welcome_title"
                     android:textAllCaps="true" />
 
                 <TextView
                     style="@style/standard_small_text_font"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_gravity="top"
+                    android:gravity="center"
                     android:paddingTop="10dp"
                     android:text="@string/assistant_welcome_desc" />
 
@@ -69,17 +60,17 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill"
                         android:layout_columnSpan="1"
-                        android:orientation="horizontal"
+                        android:layout_gravity="fill"
+                        android:layout_margin="10dp"
                         android:gravity="center_vertical"
-                        android:layout_margin="10dp">
+                        android:orientation="horizontal">
 
                         <CheckBox
-                            android:enabled="@{!viewModel.termsAndPrivacyAccepted}"
-                            android:checked="@={viewModel.termsAndPrivacyAccepted}"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:checked="@={viewModel.termsAndPrivacyAccepted}"
+                            android:enabled="@{!viewModel.termsAndPrivacyAccepted}" />
 
                         <TextView
                             android:id="@+id/terms_and_privacy"
@@ -90,36 +81,37 @@
 
                     <TextView
                         android:id="@+id/account_creation"
-                        android:enabled="@{viewModel.termsAndPrivacyAccepted}"
-                        android:visibility="@{viewModel.showCreateAccount ? View.VISIBLE : View.GONE}"
-                        android:onClick="@{createAccountClickListener}"
                         style="@style/button_font"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:layout_margin="20dp"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="fill"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="fill"
+                        android:layout_margin="20dp"
+                        android:layout_marginTop="80dp"
                         android:background="@drawable/assistant_button"
+                        android:enabled="@{viewModel.termsAndPrivacyAccepted}"
+                        android:gravity="center"
+                        android:onClick="@{createAccountClickListener}"
+                        android:padding="10dp"
+                        android:text="Vamos a crear tu cuenta"
                         android:textColor="@drawable/assistant_button_text_color"
-                        android:text="Vamos a crear tu cuenta" />
+                        android:visibility="@{viewModel.showCreateAccount ? View.VISIBLE : View.GONE}" />
 
 
                     <TextView
                         android:id="@+id/generic_connection"
-                        android:enabled="@{viewModel.termsAndPrivacyAccepted}"
-                        android:visibility="@{viewModel.showGenericLogin ? View.VISIBLE : View.GONE}"
-                        android:onClick="@{genericAccountLoginClickListener}"
                         style="@style/button_font"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:layout_margin="20dp"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="fill"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="fill"
+                        android:layout_margin="20dp"
                         android:background="@drawable/assistant_button"
+                        android:enabled="@{viewModel.termsAndPrivacyAccepted}"
+                        android:gravity="center"
+                        android:onClick="@{genericAccountLoginClickListener}"
+                        android:padding="10dp"
+                        android:text="Vamos a iniciar sesion"
                         android:textColor="@drawable/assistant_button_text_color"
-                        android:text="Vamos a iniciar sesion" />
+                        android:visibility="@{viewModel.showGenericLogin ? View.VISIBLE : View.GONE}" />
 
                 </GridLayout>
 

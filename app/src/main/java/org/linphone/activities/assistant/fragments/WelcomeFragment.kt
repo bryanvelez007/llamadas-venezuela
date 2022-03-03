@@ -77,6 +77,8 @@ class WelcomeFragment : GenericFragment<AssistantWelcomeFragmentBinding>() {
             if (it) corePreferences.readAndAgreeTermsAndPrivacy = true
         }
 
+        onBackPressedCallback.isEnabled = true
+
         setUpTermsAndPrivacyLinks()
     }
 

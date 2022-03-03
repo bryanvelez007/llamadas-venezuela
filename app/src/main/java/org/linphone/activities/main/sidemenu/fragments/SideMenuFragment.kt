@@ -25,6 +25,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -57,6 +58,7 @@ class SideMenuFragment : GenericFragment<SideMenuFragmentBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Toast.makeText(activity, "OPEEEEEEEEEEEENNNNNNNNNNNNNN", Toast.LENGTH_LONG).show()
         binding.lifecycleOwner = viewLifecycleOwner
 
         viewModel = ViewModelProvider(this)[SideMenuViewModel::class.java]
@@ -94,6 +96,7 @@ class SideMenuFragment : GenericFragment<SideMenuFragmentBinding>() {
         }
 
         binding.setSettingsClickListener {
+            Toast.makeText(activity, "SETTINGSSSSSSSSSSSS", Toast.LENGTH_SHORT).show()
             sharedViewModel.toggleDrawerEvent.value = Event(true)
             navigateToSettings()
         }

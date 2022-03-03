@@ -45,6 +45,9 @@ class AssistantActivity : GenericActivity(), SnackBarActivity {
         corePreferences.firstStart = false
     }
 
+    override fun onBackPressed() {
+    }
+
     override fun showSnackBar(resourceId: Int) {
         Snackbar.make(coordinator, resourceId, Snackbar.LENGTH_LONG).show()
     }

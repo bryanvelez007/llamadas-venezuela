@@ -29,7 +29,7 @@ import androidx.lifecycle.ViewModelProvider
 import org.linphone.LinphoneApplication.Companion.coreContext
 import org.linphone.R
 import org.linphone.activities.GenericFragment
-import org.linphone.activities.main.LoginUserActivity
+import org.linphone.activities.assistant.AssistantActivity
 import org.linphone.activities.main.viewmodels.SharedMainViewModel
 import org.linphone.activities.main.viewmodels.StatusViewModel
 import org.linphone.core.RegistrationState
@@ -74,6 +74,12 @@ class StatusFragment : GenericFragment<StatusFragmentBinding>() {
             viewModel.refreshRegister()
         }
 
+        val defaultAccount = coreContext.core.defaultAccount
+        if (defaultAccount != null) {
+            val stated = defaultAccount.state
+            verifyStatusLogin(stated)
+        }
+
         onBackPressedCallback.isEnabled = false
     }
 
@@ -91,11 +97,8 @@ class StatusFragment : GenericFragment<StatusFragmentBinding>() {
 
         if (RegistrationState.Failed == state) {
             Toast.makeText(activity, "FAILED" + state, Toast.LENGTH_SHORT).show()
-            editor.putString("isLoged", "no")
-            editor.apply()
-            editor.commit()
 
-            val intent = Intent(activity, LoginUserActivity::class.java)
+            val intent = Intent(activity, AssistantActivity::class.java)
             startActivity(intent)
         }
     }
