@@ -23,7 +23,14 @@ import android.content.Context
 import android.os.Vibrator
 import android.text.Editable
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONException
 import org.linphone.LinphoneApplication.Companion.coreContext
 import org.linphone.LinphoneApplication.Companion.corePreferences
 import org.linphone.R
@@ -37,6 +44,7 @@ import org.linphone.utils.LinphoneUtils
 
 class DialerViewModel : LogsUploadViewModel() {
     val enteredUri = MutableLiveData<String>()
+    val saldoJson = MutableLiveData<String>()
 
     val atLeastOneCall = MutableLiveData<Boolean>()
 
@@ -49,6 +57,8 @@ class DialerViewModel : LogsUploadViewModel() {
     val autoInitiateVideoCalls = MutableLiveData<Boolean>()
 
     val scheduleConferenceAvailable = MutableLiveData<Boolean>()
+
+    private var requestQueue: RequestQueue? = null
 
     val updateAvailableEvent: MutableLiveData<Event<String>> by lazy {
         MutableLiveData<Event<String>>()
@@ -138,8 +148,34 @@ class DialerViewModel : LogsUploadViewModel() {
         atLeastOneCall.value = coreContext.core.callsNb > 0
         transferVisibility.value = false
 
+        saldoJson.value = "prueba"
+        requestQueue = Volley.newRequestQueue(coreContext.context)
+        jsonParse()
+
+        // Toast.makeText(coreContext.context, apiResponse, Toast.LENGTH_LONG).show()
+
         showSwitchCamera.value = coreContext.showSwitchCameraButton()
         scheduleConferenceAvailable.value = LinphoneUtils.isRemoteConferencingAvailable()
+    }
+
+    private fun jsonParse() {
+        val url = "http://voip.llamadasvenezuela.com/saldo/saldo.php?username=102030"
+        val request = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener {
+                response ->
+                try {
+                    val saldo = response.getString("saldo")
+                    saldoJson.value = "Tu saldo: " + saldo
+                    Toast.makeText(coreContext.context, saldo, Toast.LENGTH_SHORT).show()
+                } catch (e: JSONException) {
+                    Toast.makeText(coreContext.context, e.toString(), Toast.LENGTH_SHORT).show()
+                    e.printStackTrace()
+                }
+            },
+            Response.ErrorListener { error -> error.printStackTrace() }
+        )
+        requestQueue?.add(request)
     }
 
     override fun onCleared() {

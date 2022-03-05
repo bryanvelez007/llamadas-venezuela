@@ -45,23 +45,46 @@
 
             <EditText
                 android:id="@+id/sip_uri_input"
-                android:text="@={viewModel.enteredUri}"
-                android:beforeTextChanged="@{(text, start, count, after) -> viewModel.onBeforeUriChanged(sipUriInput, count, after)}"
-                android:afterTextChanged="@{(text) -> viewModel.onAfterUriChanged(sipUriInput, text)}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/erase"
+                android:afterTextChanged="@{(text) -> viewModel.onAfterUriChanged(sipUriInput, text)}"
                 android:background="@color/transparent_color"
                 android:backgroundTint="@color/transparent_color"
+                android:beforeTextChanged="@{(text, start, count, after) -> viewModel.onBeforeUriChanged(sipUriInput, count, after)}"
                 android:ellipsize="start"
                 android:hint="@string/dialer_address_bar_hint"
                 android:inputType="phone"
                 android:paddingLeft="20dp"
                 android:paddingRight="5dp"
+                android:text="@={viewModel.enteredUri}"
                 android:textColorHint="@color/light_grey_color" />
 
         </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/saldo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/address_bar"
+            android:background="#FFFFFF">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="40dp"
+                android:textSize="16sp"
+                android:text="@={viewModel.saldoJson}"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"
+                android:textColor="#3F51B5">
+
+            </TextView>
+
+        </RelativeLayout>
+
 
         <LinearLayout
             android:id="@+id/controls"
@@ -119,10 +142,10 @@
 
         <include
             layout="@layout/numpad"
-            android:layout_above="@id/controls"
-            android:layout_below="@id/address_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/controls"
+            android:layout_below="@id/saldo"
             app:keyListener="@{viewModel.onKeyClick}" />
 
     </RelativeLayout>

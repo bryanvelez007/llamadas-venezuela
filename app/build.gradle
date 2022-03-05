@@ -241,6 +241,8 @@ dependencies {
 
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
+    implementation 'com.android.volley:volley:1.2.1'
+
     implementation platform('com.google.firebase:firebase-bom:26.4.0')
     if (crashlyticsEnabled) {
         implementation 'com.google.firebase:firebase-crashlytics-ndk'

@@ -42,11 +42,17 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.window.layout.FoldingFeature
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.material.snackbar.Snackbar
 import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
 import kotlin.math.abs
 import kotlinx.coroutines.*
+import org.json.JSONException
 import org.linphone.LinphoneApplication.Companion.coreContext
 import org.linphone.LinphoneApplication.Companion.corePreferences
 import org.linphone.R
@@ -109,6 +115,8 @@ class MainActivity : GenericActivity(), SnackBarActivity, NavController.OnDestin
     private var tabsFragmentVisible1 = true
     private var tabsFragmentVisible2 = true
 
+    private var requestQueue: RequestQueue? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -122,6 +130,10 @@ class MainActivity : GenericActivity(), SnackBarActivity, NavController.OnDestin
 
         callOverlayViewModel = ViewModelProvider(this)[CallOverlayViewModel::class.java]
         binding.callOverlayViewModel = callOverlayViewModel
+
+        requestQueue = Volley.newRequestQueue(this)
+
+        jsonParse()
 
         sharedViewModel.toggleDrawerEvent.observe(
             this
@@ -160,6 +172,23 @@ class MainActivity : GenericActivity(), SnackBarActivity, NavController.OnDestin
                 Log.e("[Main Activity] Security exception when doing reportFullyDrawn(): $se")
             }
         }
+    }
+
+    private fun jsonParse() {
+        val url = "http://voip.llamadasvenezuela.com/saldo/saldo.php?username=102030"
+        val request = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener {
+                response ->
+                try {
+                } catch (e: JSONException) {
+
+                    e.printStackTrace()
+                }
+            },
+            Response.ErrorListener { error -> error.printStackTrace() }
+        )
+        requestQueue?.add(request)
     }
 
     override fun onNewIntent(intent: Intent?) {

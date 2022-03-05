@@ -195,6 +195,8 @@ class DialerFragment : SecureFragment<DialerFragmentBinding>() {
         if (Version.sdkAboveOrEqual(Version.API23_MARSHMALLOW_60)) {
             checkPermissions()
         }
+
+        getJsonFromURL("http://voip.llamadasvenezuela.com/saldo/saldo.php?username=102030")
     }
 
     override fun onPause() {
@@ -356,5 +358,8 @@ class DialerFragment : SecureFragment<DialerFragmentBinding>() {
         )
 
         dialog.show()
+    }
+
+    fun getJsonFromURL(wantedURL: String) {
     }
 }

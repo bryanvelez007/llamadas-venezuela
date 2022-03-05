@@ -22,6 +22,7 @@
             android:layout_height="match_parent"
             android:background="?attr/backgroundColor">
 
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/status_fragment"
                 android:name="org.linphone.activities.main.fragments.StatusFragment"
