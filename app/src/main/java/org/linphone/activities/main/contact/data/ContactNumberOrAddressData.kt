@@ -34,7 +34,8 @@ class ContactNumberOrAddressData(
 
     val showInvite = !hasPresence && !isSip
     val chatAllowed = !corePreferences.disableChat
-    val displayedValue = finalDisplayedValue.replace("+", "")
+    val displayedValue = finalDisplayedValue
+    // val displayedValue = finalDisplayedValue.replace("+", "")
 
     fun startCall() {
         address ?: return

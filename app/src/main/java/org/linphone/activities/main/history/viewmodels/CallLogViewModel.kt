@@ -48,6 +48,7 @@ class CallLogViewModelFactory(private val callLog: CallLog) :
 
 class CallLogViewModel(val callLog: CallLog, private val isRelated: Boolean = false) : GenericContactViewModel(callLog.remoteAddress) {
     val peerSipUri: String by lazy {
+
         LinphoneUtils.getDisplayableAddress(callLog.remoteAddress)
     }
 

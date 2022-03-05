@@ -357,7 +357,8 @@ class MainActivity : GenericActivity(), SnackBarActivity, NavController.OnDestin
 
         val address = coreContext.core.interpretUrl(addressToCall)
         if (address != null) {
-            addressToCall = address.asStringUriOnly().replace("+", "")
+            // addressToCall = address.asStringUriOnly().replace("+", "")
+            addressToCall = address.asStringUriOnly()
         }
 
         Log.i("[Main Activity] Starting dialer with pre-filled URI $addressToCall")

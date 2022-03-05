@@ -2,7 +2,7 @@
 <config xmlns="http://www.linphone.org/xsds/lpconfig.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.linphone.org/xsds/lpconfig.xsd lpconfig.xsd">
   <section name="proxy_default_values">
     <entry name="avpf" overwrite="true">0</entry>
-    <entry name="dial_escape_plus" overwrite="true">0</entry>
+    <entry name="dial_escape_plus" overwrite="true">1</entry>
     <entry name="publish" overwrite="true">0</entry>
     <entry name="quality_reporting_collector" overwrite="true"></entry>
     <entry name="quality_reporting_enabled" overwrite="true">0</entry>

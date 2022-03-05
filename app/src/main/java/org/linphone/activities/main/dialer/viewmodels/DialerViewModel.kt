@@ -189,7 +189,8 @@ class DialerViewModel : LogsUploadViewModel() {
     fun startCall() {
         val addressToCall = enteredUri.value.orEmpty()
         if (addressToCall.isNotEmpty()) {
-            val addressToCallFinal = addressToCall.replace("+", "")
+            // val addressToCallFinal = addressToCall.replace("+", "")
+            val addressToCallFinal = addressToCall
             coreContext.startCall(addressToCallFinal)
             eraseAll()
         } else {
