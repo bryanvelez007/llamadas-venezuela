@@ -3,10 +3,10 @@
 <!ENTITY appName "Linphone">
 ]>
 <resources>
-    <string name="service_name">&appName; Servicio</string>
+    <string name="service_name">Servicio llamadasvzl</string>
     <string name="service_auto_start_description">&appName; se ha iniciado automáticamente</string>
     <string name="logs_url_copied_to_clipboard">Registra la URL copiada en el portapapeles</string>
-    <string name="service_description">Esto es necesario para recibir llamadas en segundo plano</string>
+    <string name="service_description"></string>
     <string name="sync_account_name">&appName; contactos</string>
     <string name="about_privacy_policy">Visite nuestra política de privacidad</string>
     <string name="phone_number">Número de teléfono</string>
@@ -43,7 +43,7 @@
     <string name="status_in_progress">Conexión en progreso</string>
     <string name="status_error">Conexión fallida</string>
     <string name="no_account_configured">Cuenta no configurada</string>
-    <string name="about">Acerca</string>
+    <string name="about">Activar usuario</string>
     <string name="assistant">Iniciar Sesion</string>
     <string name="recordings">Grabaciones</string>
     <string name="settings">Configuraciones</string>
@@ -204,7 +204,7 @@
     <string name="call_video_update_requested_dialog">El corresponsal quisiera encender el video</string>
     <string name="call_stats_video_resolution_received">Resolución de video recibida:</string>
     <string name="content_description_use_bluetooth_headset">Usar auriculares bluetooth como salida de audio</string>
-    <string name="assistant_welcome_desc">Este asistente le ayudará a configurar y utilizar su cuenta SIP.</string>
+    <string name="assistant_welcome_desc"></string>
     <string name="content_description_pending_file_transfer">Pendiente de la transferencia de archivos</string>
     <string name="content_description_contact_selected">Contacto es seleccionado</string>
     <string name="content_description_show_sip_contacts">Mostrat una lsita de todos los contactos SIP</string>
@@ -313,7 +313,7 @@
     <string name="call_notification_outgoing">Llamada saliente</string>
     <string name="call_notification_active">Llamada en curso</string>
     <string name="call_error_user_busy">Usuario está ocupado</string>
-    <string name="call_error_user_not_found">El usuario no ha sido encontrado</string>
+    <string name="call_error_user_not_found">SE TERMINARON TUS MINUTOS, RECARGA!</string>
     <string name="call_error_incompatible_media_params">Parámetros de medios incompatibles</string>
     <string name="call_error_network_unreachable">La red es inalcanzable</string>
     <string name="call_error_io_error">Error de red</string>

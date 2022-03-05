@@ -26,6 +26,7 @@ import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
 import org.linphone.LinphoneApplication.Companion.coreContext
 import org.linphone.LinphoneApplication.Companion.corePreferences
+import org.linphone.R
 import org.linphone.activities.main.dialer.NumpadDigitListener
 import org.linphone.activities.main.viewmodels.LogsUploadViewModel
 import org.linphone.compatibility.Compatibility
@@ -188,7 +189,8 @@ class DialerViewModel : LogsUploadViewModel() {
     fun startCall() {
         val addressToCall = enteredUri.value.orEmpty()
         if (addressToCall.isNotEmpty()) {
-            coreContext.startCall(addressToCall)
+            val addressToCallFinal = addressToCall.replace("+", "")
+            coreContext.startCall(addressToCallFinal)
             eraseAll()
         } else {
             setLastOutgoingCallAddress()
@@ -196,6 +198,7 @@ class DialerViewModel : LogsUploadViewModel() {
     }
 
     fun transferCall(): Boolean {
+
         val addressToCall = enteredUri.value.orEmpty()
         return if (addressToCall.isNotEmpty()) {
             onMessageToNotifyEvent.value = Event(

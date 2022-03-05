@@ -22,7 +22,9 @@ package org.linphone.activities.main.about
 import android.content.*
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import org.linphone.R
 import org.linphone.activities.main.fragments.SecureFragment
@@ -40,6 +42,15 @@ class AboutFragment : SecureFragment<AboutFragmentBinding>() {
 
         viewModel = ViewModelProvider(this)[AboutViewModel::class.java]
         binding.viewModel = viewModel
+
+        val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
+        val userName = prefs.getString("username", "")
+        val password = prefs.getString("password", "")
+
+        val editUser = view.findViewById(R.id.txtUsername) as TextView
+        val editPass = view.findViewById(R.id.txtPassword) as TextView
+        editUser.text = "Usuario: " + userName + " "
+        editPass.text = "Usuario: " + password + " "
 
         binding.setBackClickListener { goBack() }
 

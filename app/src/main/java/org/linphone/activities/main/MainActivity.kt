@@ -30,7 +30,6 @@ import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -55,7 +54,6 @@ import org.linphone.activities.*
 import org.linphone.activities.assistant.AssistantActivity
 import org.linphone.activities.main.viewmodels.CallOverlayViewModel
 import org.linphone.activities.main.viewmodels.SharedMainViewModel
-import org.linphone.activities.navigateToDialer
 import org.linphone.compatibility.Compatibility
 import org.linphone.contact.ContactsUpdatedListenerStub
 import org.linphone.core.CorePreferences
@@ -359,7 +357,7 @@ class MainActivity : GenericActivity(), SnackBarActivity, NavController.OnDestin
 
         val address = coreContext.core.interpretUrl(addressToCall)
         if (address != null) {
-            addressToCall = address.asStringUriOnly()
+            addressToCall = address.asStringUriOnly().replace("+", "")
         }
 
         Log.i("[Main Activity] Starting dialer with pre-filled URI $addressToCall")

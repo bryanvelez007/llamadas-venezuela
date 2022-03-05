@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:backgroundTint="@drawable/round_orange_button_background"
-            android:text="Iniciar Sesion"
+            android:text="Terminar mi registro"
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="15sp" />

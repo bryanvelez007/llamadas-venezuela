@@ -92,7 +92,7 @@
                         android:gravity="center"
                         android:onClick="@{createAccountClickListener}"
                         android:padding="10dp"
-                        android:text="Vamos a crear tu cuenta"
+                        android:text="Crear Usuario"
                         android:textColor="@drawable/assistant_button_text_color"
                         android:visibility="@{viewModel.showCreateAccount ? View.VISIBLE : View.GONE}" />
 
@@ -109,7 +109,7 @@
                         android:gravity="center"
                         android:onClick="@{genericAccountLoginClickListener}"
                         android:padding="10dp"
-                        android:text="Vamos a iniciar sesion"
+                        android:text="Iniciar sesion"
                         android:textColor="@drawable/assistant_button_text_color"
                         android:visibility="@{viewModel.showGenericLogin ? View.VISIBLE : View.GONE}" />
 

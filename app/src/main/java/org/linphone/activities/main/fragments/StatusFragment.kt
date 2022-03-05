@@ -89,7 +89,6 @@ class StatusFragment : GenericFragment<StatusFragmentBinding>() {
         val editor: SharedPreferences.Editor = preferences.edit()
 
         if (RegistrationState.Ok == state) {
-            Toast.makeText(activity, "OKKKKKKKKKKK" + state, Toast.LENGTH_SHORT).show()
             editor.putString("isLoged", "yes")
             editor.apply()
             editor.commit()

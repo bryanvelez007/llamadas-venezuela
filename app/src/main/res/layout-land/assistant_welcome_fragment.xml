@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/assistant_button"
                         android:textColor="@drawable/assistant_button_text_color"
-                        android:text="Vamos a crear tu cuenta" />
+                        android:text="Crear Usuario" />
 
 
 
@@ -121,7 +121,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/assistant_button"
                         android:textColor="@drawable/assistant_button_text_color"
-                        android:text="Vamos a iniciar sesion" />
+                        android:text="Iniciar sesion" />
 
 
                 </GridLayout>

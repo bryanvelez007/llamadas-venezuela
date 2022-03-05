@@ -24,7 +24,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import org.linphone.LinphoneApplication.Companion.coreContext
 import org.linphone.R
@@ -52,7 +51,6 @@ class GenericAccountLoginFragment : GenericFragment<AssistantGenericAccountLogin
         val password = prefs.getString("password", "")
         val isLoged = prefs.getString("isLoged", "default")
 
-        Toast.makeText(activity, "user: " + userName + "pass: " + password, Toast.LENGTH_SHORT).show()
         binding.lifecycleOwner = viewLifecycleOwner
 
         sharedViewModel = requireActivity().run {
@@ -71,6 +69,15 @@ class GenericAccountLoginFragment : GenericFragment<AssistantGenericAccountLogin
                 if (coreContext.core.isEchoCancellerCalibrationRequired) {
                     navigateToEchoCancellerCalibration()
                 } else {
+                    val miUser = viewModel.username.value
+                    val miPass = viewModel.password.value
+
+                    val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
+                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                    editor.putString("username", miUser)
+                    editor.putString("password", miPass)
+                    editor.apply()
+                    editor.commit()
                     requireActivity().finish()
                 }
             }
@@ -98,6 +105,7 @@ class GenericAccountLoginFragment : GenericFragment<AssistantGenericAccountLogin
                     getString(R.string.assistant_continue_even_if_credentials_invalid)
                 )
 */
+
                 dialog.show()
             }
         }

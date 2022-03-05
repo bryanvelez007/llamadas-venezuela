@@ -25,15 +25,16 @@ import org.linphone.core.Address
 class ContactNumberOrAddressData(
     val address: Address?,
     val hasPresence: Boolean,
-    val displayedValue: String,
+    val finalDisplayedValue: String,
     val isSip: Boolean = true,
     val showSecureChat: Boolean = false,
     val typeLabel: String = "",
     private val listener: ContactNumberOrAddressClickListener
 ) {
-    val showInvite = !hasPresence && !isSip
 
+    val showInvite = !hasPresence && !isSip
     val chatAllowed = !corePreferences.disableChat
+    val displayedValue = finalDisplayedValue.replace("+", "")
 
     fun startCall() {
         address ?: return
@@ -46,12 +47,13 @@ class ContactNumberOrAddressData(
     }
 
     fun smsInvite() {
-        listener.onSmsInvite(displayedValue)
+        listener.onSmsInvite(finalDisplayedValue)
     }
 }
 
 interface ContactNumberOrAddressClickListener {
-    fun onCall(address: Address)
+    fun onCall(address: Address) {
+    }
 
     fun onChat(address: Address, isSecured: Boolean)
 

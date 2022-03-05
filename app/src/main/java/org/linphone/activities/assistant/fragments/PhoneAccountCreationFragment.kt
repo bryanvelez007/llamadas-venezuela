@@ -23,13 +23,15 @@ import android.app.Activity
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.preference.PreferenceManager
 import android.view.View
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
+import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import org.linphone.R
@@ -53,15 +55,42 @@ class PhoneAccountCreationFragment :
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
+
+        val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString("registerComplete", "no")
+        editor.apply()
+        editor.commit()
+
+        val myHandler = Handler(Looper.getMainLooper())
+
+        myHandler.post(object : Runnable {
+            override fun run() {
+                val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
+                val isRegister = prefs.getString("registerComplete", "")
+
+                myHandler.postDelayed(this, 5000 /*5 segundos*/)
+
+                if (isRegister == "yes") {
+                    myHandler.removeCallbacks(this)
+                    myHandler.removeCallbacksAndMessages(null)
+                    navigateToPhoneAccountValidation()
+                }
+            }
+        })
+
         // navigateToPhoneAccountValidation()
-        Toast.makeText(activity, "SIIIIIIIIIII", Toast.LENGTH_SHORT).show()
+
+        val btnFinalRegister = view.findViewById(R.id.btnGoToSignIn) as Button
+        btnFinalRegister.visibility = View.INVISIBLE
 
         val myWebView: WebView = view.findViewById(R.id.WebView1)
 
         myWebView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(
                 view: WebView,
-                url: String
+                url: String,
+
             ): Boolean {
                 view.loadUrl(url)
                 return true
@@ -83,6 +112,8 @@ class PhoneAccountCreationFragment :
             PhoneAccountCreationViewModelFactory(sharedViewModel.getAccountCreator())
         )[PhoneAccountCreationViewModel::class.java]
         binding.viewModel = viewModel
+
+        // navigateToPhoneAccountValidation()
 
         binding.setInfoClickListener {
             navigateToPhoneAccountValidation()
@@ -124,11 +155,11 @@ class MyWebViewClient internal constructor(private val activity: Activity) : Web
         if (url.contains("username")) {
             val userName = url.split("username=")[1].split("&")[0]
             val password = url.split("password=")[1].split("&")[0]
-            Toast.makeText(activity, "Username: " + userName + "Password: " + password, Toast.LENGTH_SHORT).show()
             val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.putString("username", userName)
             editor.putString("password", password)
+            editor.putString("registerComplete", "yes")
             editor.apply()
             editor.commit()
 
@@ -148,6 +179,5 @@ class MyWebViewClient internal constructor(private val activity: Activity) : Web
         request: WebResourceRequest,
         error: WebResourceError
     ) {
-        Toast.makeText(activity, "Got Error! $error", Toast.LENGTH_SHORT).show()
     }
 }

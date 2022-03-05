@@ -53,7 +53,7 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:padding="15dp"
-                android:text="@string/about"/>
+                android:text="Activar"/>
 
             <View
                 android:layout_width="0dp"
@@ -83,50 +83,33 @@
                     android:padding="20dp">
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:layout_gravity="center"
                         android:layout_marginBottom="10dp"
                         android:contentDescription="@null"
-                        android:src="@drawable/linphone_logo_tinted"/>
-
-                    <ImageView
-                        android:layout_width="125dp"
-                        android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:layout_gravity="center"
-                        android:contentDescription="@null"
-                        android:src="@drawable/linphone_app_name_logo" />
+                        android:src="@drawable/icon_main_logo"/>
 
                     <TextView
-                        android:textSize="13sp"
-                        android:textColor="?accentColor"
+                        android:textSize="33sp"
+                        android:textColor="#fff"
+                        android:fontFamily="sans-serif-black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/app_description" />
+                        android:text="Activa tu usuario" />
 
                     <TextView
-                        style="@style/about_version_font"
+                        android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:paddingTop="20dp"
-                        android:textColorLink="?attr/secondaryTextColor"
-                        android:textIsSelectable="true"
-                        android:text="@{String.format(@string/about_version, viewModel.appVersion)}" />
+                        android:layout_height="50dp"
+                        android:textSize="20sp"
+                        android:textColor="#fff"
+                        android:fontFamily="monospace"
+                        android:text="llamadasvzl">
 
-                    <TextView
-                        style="@style/about_version_font"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColorLink="?attr/secondaryTextColor"
-                        android:textIsSelectable="true"
-                        android:text="@{String.format(@string/about_liblinphone_sdk_version, viewModel.sdkVersion)}" />
+                    </TextView>
 
                 </LinearLayout>
 
@@ -139,51 +122,65 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:textColor="?attr/accentColor"
-                        android:textSize="16sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:autoLink="web"
                         android:gravity="center"
                         android:paddingTop="20dp"
-                        android:text="@string/about_link"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:text="Hola debes enviarnos un capture de esta pantalla para ACTIVAR tu cuenta a nuestro instagram"
+                        android:textColor="?attr/accentColor"
+                        android:textColorLink="@color/primary_color"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/txtUsername"
+                        style="@style/about_license_font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:paddingTop="20dp"
+                        android:textSize="20dp"
+                        android:textColor="#1636E8"
+                        android:fontFamily="monospace"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:gravity="center"
+                        android:text="Usario: test1"
                         android:textColorLink="@color/primary_color" />
 
                     <TextView
+                        android:id="@+id/txtPassword"
                         android:onClick="@{privacyPolicyClickListener}"
                         style="@style/about_license_font"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:autoLink="web"
-                        android:paddingTop="10dp"
+                        android:layout_gravity="left"
+                        android:paddingTop="20dp"
+                        android:textSize="20dp"
+                        android:textColor="#1636E8"
+                        android:fontFamily="monospace"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
                         android:gravity="center"
-                        android:text="@string/about_privacy_policy"
+                        android:text="Contraseña: test1"
                         android:textColorLink="@color/primary_color" />
-
-                    <TextView
-                        android:onClick="@{licenseClickListener}"
-                        style="@style/about_license_font"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:text="@string/about_text" />
 
                     <TextView
                         android:onClick="@{weblateClickListener}"
                         android:textColor="?attr/accentColor"
-                        android:textSize="16sp"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:paddingTop="10dp"
                         android:paddingBottom="20dp"
-                        android:text="@string/about_weblate_translation" />
+                        android:paddingTop="50dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:text="Si no activas tu cuenta no podras realizar llamadas" />
 
                     <View
                         android:layout_width="match_parent"

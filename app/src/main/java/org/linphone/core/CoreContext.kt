@@ -555,6 +555,7 @@ class CoreContext(val context: Context, coreConfig: Config) {
 
     fun startCall(to: String) {
         var stringAddress = to
+
         if (android.util.Patterns.PHONE.matcher(to).matches()) {
             val contact: Contact? = contactsManager.findContactByPhoneNumber(to)
             val alias = contact?.getContactForPhoneNumberOrAddress(to)
@@ -580,6 +581,7 @@ class CoreContext(val context: Context, coreConfig: Config) {
         forceZRTP: Boolean = false,
         localAddress: Address? = null
     ) {
+
         if (!core.isNetworkReachable) {
             Log.e("[Context] Network unreachable, abort outgoing call")
             callErrorMessageResourceId.value = Event(context.getString(R.string.call_error_network_unreachable))

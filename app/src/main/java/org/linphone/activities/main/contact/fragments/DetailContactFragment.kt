@@ -94,14 +94,15 @@ class DetailContactFragment : GenericFragment<ContactDetailFragmentBinding>() {
         ) {
             it.consume { address ->
                 if (coreContext.core.callsNb > 0) {
-                    Log.i("[Contact] Starting dialer with pre-filled URI ${address.asStringUriOnly()}, is transfer? ${sharedViewModel.pendingCallTransfer}")
+
+                    Log.i("[Contact] Starting dialer with pre-filled URI ${address.asStringUriOnly().replace("+","")}, is transfer? ${sharedViewModel.pendingCallTransfer}")
                     sharedViewModel.updateContactsAnimationsBasedOnDestination.value =
                         Event(R.id.dialerFragment)
                     sharedViewModel.updateDialerAnimationsBasedOnDestination.value =
                         Event(R.id.masterContactsFragment)
 
                     val args = Bundle()
-                    args.putString("URI", address.asStringUriOnly())
+                    args.putString("URI", address.asStringUriOnly().replace("+", ""))
                     args.putBoolean("Transfer", sharedViewModel.pendingCallTransfer)
                     args.putBoolean(
                         "SkipAutoCallStart",

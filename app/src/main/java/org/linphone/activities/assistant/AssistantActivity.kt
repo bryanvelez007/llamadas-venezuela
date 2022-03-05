@@ -19,7 +19,9 @@
  */
 package org.linphone.activities.assistant
 
+import android.Manifest
 import android.os.Bundle
+import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
@@ -27,6 +29,7 @@ import org.linphone.LinphoneApplication.Companion.corePreferences
 import org.linphone.R
 import org.linphone.activities.GenericActivity
 import org.linphone.activities.SnackBarActivity
+import org.linphone.activities.assistant.fragments.EchoCancellerCalibrationFragment
 import org.linphone.activities.assistant.viewmodels.SharedAssistantViewModel
 
 class AssistantActivity : GenericActivity(), SnackBarActivity {
@@ -43,6 +46,41 @@ class AssistantActivity : GenericActivity(), SnackBarActivity {
         coordinator = findViewById(R.id.coordinator)
 
         corePreferences.firstStart = false
+
+        Toast.makeText(this@AssistantActivity, "" + EchoCancellerCalibrationFragment.RECORD_AUDIO_PERMISSION_REQUEST_CODE, Toast.LENGTH_SHORT).show()
+        requestPermissions(
+            arrayOf(
+                Manifest.permission.RECORD_AUDIO,
+            ),
+            EchoCancellerCalibrationFragment.RECORD_AUDIO_PERMISSION_REQUEST_CODE
+        )
+    }
+
+    /*
+
+     arrayOf(
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.CAMERA,
+                Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.READ_PHONE_NUMBERS,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.MANAGE_OWN_CALLS,
+                Manifest.permission.READ_CONTACTS,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.WRITE_CONTACTS,
+
+            )
+
+     */
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onBackPressed() {
