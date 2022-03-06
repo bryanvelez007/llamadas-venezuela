@@ -34,6 +34,11 @@ notify_each_friend_individually_when_presence_received=0
 activation_code_length=4
 prefer_basic_chat_room=1
 
+[audio_codec_0]
+mime=GSM
+rate=8000
+enabled=1
+
 [assistant]
 xmlrpc_url=https://subscribe.linphone.org:444/wizard.php
 

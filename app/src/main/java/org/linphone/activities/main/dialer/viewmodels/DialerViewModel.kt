@@ -20,10 +20,12 @@
 package org.linphone.activities.main.dialer.viewmodels
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.os.Vibrator
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.widget.EditText
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -148,7 +150,6 @@ class DialerViewModel : LogsUploadViewModel() {
         atLeastOneCall.value = coreContext.core.callsNb > 0
         transferVisibility.value = false
 
-        saldoJson.value = "prueba"
         requestQueue = Volley.newRequestQueue(coreContext.context)
         jsonParse()
 
@@ -159,23 +160,33 @@ class DialerViewModel : LogsUploadViewModel() {
     }
 
     private fun jsonParse() {
-        val url = "http://voip.llamadasvenezuela.com/saldo/saldo.php?username=102030"
-        val request = JsonObjectRequest(
-            Request.Method.GET, url, null,
-            Response.Listener {
-                response ->
-                try {
-                    val saldo = response.getString("saldo")
-                    saldoJson.value = "Tu saldo: " + saldo
-                    Toast.makeText(coreContext.context, saldo, Toast.LENGTH_SHORT).show()
-                } catch (e: JSONException) {
-                    Toast.makeText(coreContext.context, e.toString(), Toast.LENGTH_SHORT).show()
-                    e.printStackTrace()
-                }
-            },
-            Response.ErrorListener { error -> error.printStackTrace() }
-        )
-        requestQueue?.add(request)
+
+        val myHandler = Handler(Looper.getMainLooper())
+
+        myHandler.post(object : Runnable {
+            override fun run() {
+                myHandler.postDelayed(this, 60000 /*60 segundos*/)
+
+                val prefs = PreferenceManager.getDefaultSharedPreferences(coreContext.context)
+                val userName = prefs.getString("username", "")
+
+                val url = "http://voip.llamadasvenezuela.com/saldo/saldo.php?username=" + userName
+                val request = JsonObjectRequest(
+                    Request.Method.GET, url, null,
+                    Response.Listener {
+                        response ->
+                        try {
+                            val saldo = response.getString("saldo")
+                            saldoJson.value = "Saldo: " + saldo
+                        } catch (e: JSONException) {
+                            e.printStackTrace()
+                        }
+                    },
+                    Response.ErrorListener { error -> error.printStackTrace() }
+                )
+                requestQueue?.add(request)
+            }
+        })
     }
 
     override fun onCleared() {

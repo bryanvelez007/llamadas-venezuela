@@ -21,7 +21,9 @@ package org.linphone.activities.main
 
 import android.app.Activity
 import android.content.ComponentCallbacks2
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
@@ -30,6 +32,7 @@ import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -42,17 +45,13 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.window.layout.FoldingFeature
-import com.android.volley.Request
 import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.snackbar.Snackbar
 import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
 import kotlin.math.abs
 import kotlinx.coroutines.*
-import org.json.JSONException
 import org.linphone.LinphoneApplication.Companion.coreContext
 import org.linphone.LinphoneApplication.Companion.corePreferences
 import org.linphone.R
@@ -131,9 +130,16 @@ class MainActivity : GenericActivity(), SnackBarActivity, NavController.OnDestin
         callOverlayViewModel = ViewModelProvider(this)[CallOverlayViewModel::class.java]
         binding.callOverlayViewModel = callOverlayViewModel
 
-        requestQueue = Volley.newRequestQueue(this)
+        val sharedPrefFile = packageName + "_preferences"
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        val isLoged = sharedPreferences.getString("isLoged", "default")
 
-        jsonParse()
+        if (isLoged == "default") {
+            startActivity(Intent(this, AssistantActivity::class.java))
+        }
+        Toast.makeText(this, isLoged, Toast.LENGTH_SHORT).show()
+
+        requestQueue = Volley.newRequestQueue(this)
 
         sharedViewModel.toggleDrawerEvent.observe(
             this
@@ -172,23 +178,6 @@ class MainActivity : GenericActivity(), SnackBarActivity, NavController.OnDestin
                 Log.e("[Main Activity] Security exception when doing reportFullyDrawn(): $se")
             }
         }
-    }
-
-    private fun jsonParse() {
-        val url = "http://voip.llamadasvenezuela.com/saldo/saldo.php?username=102030"
-        val request = JsonObjectRequest(
-            Request.Method.GET, url, null,
-            Response.Listener {
-                response ->
-                try {
-                } catch (e: JSONException) {
-
-                    e.printStackTrace()
-                }
-            },
-            Response.ErrorListener { error -> error.printStackTrace() }
-        )
-        requestQueue?.add(request)
     }
 
     override fun onNewIntent(intent: Intent?) {

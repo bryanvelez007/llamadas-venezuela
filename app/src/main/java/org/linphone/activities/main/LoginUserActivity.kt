@@ -35,8 +35,6 @@ class LoginUserActivity : GenericActivity() {
             txtPassword.setText(password)
         }
 
-        Toast.makeText(this, "loged: " + isLoged, Toast.LENGTH_SHORT).show()
-
         buttonSignIn.setOnClickListener {
             Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this@LoginUserActivity, MainActivity::class.java))

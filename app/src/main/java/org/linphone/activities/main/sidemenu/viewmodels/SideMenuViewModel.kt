@@ -19,6 +19,7 @@
  */
 package org.linphone.activities.main.sidemenu.viewmodels
 
+import android.preference.PreferenceManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.linphone.LinphoneApplication.Companion.coreContext
@@ -30,7 +31,7 @@ import org.linphone.utils.LinphoneUtils
 
 class SideMenuViewModel : ViewModel() {
     val showAccounts: Boolean = corePreferences.showAccountsInSideMenu
-    val showAssistant: Boolean = corePreferences.showAssistantInSideMenu
+    var showAssistant = false
     val showSettings: Boolean = corePreferences.showSettingsInSideMenu
     val showRecordings: Boolean = corePreferences.showRecordingsInSideMenu
     val showScheduledConferences: Boolean = corePreferences.showScheduledConferencesInSideMenu &&
@@ -46,6 +47,9 @@ class SideMenuViewModel : ViewModel() {
 
     lateinit var accountsSettingsListener: SettingListenerStub
 
+    val prefs = PreferenceManager.getDefaultSharedPreferences(coreContext.context)
+    val isLoged = prefs.getString("isLoged", "")
+
     private val listener: CoreListenerStub = object : CoreListenerStub() {
         override fun onAccountRegistrationStateChanged(
             core: Core,
@@ -53,6 +57,9 @@ class SideMenuViewModel : ViewModel() {
             state: RegistrationState,
             message: String
         ) {
+            if (isLoged != "yes") {
+                showAssistant = true
+            }
             // +1 is for the default account, otherwise this will trigger every time
             if (accounts.value.isNullOrEmpty() ||
                 coreContext.core.accountList.size != accounts.value.orEmpty().size + 1
@@ -66,11 +73,19 @@ class SideMenuViewModel : ViewModel() {
     init {
         defaultAccountFound.value = false
         defaultAccountAvatar.value = corePreferences.defaultAccountAvatarPath
+
+        if (isLoged != "yes") {
+            showAssistant = true
+        }
+
         coreContext.core.addListener(listener)
         updateAccountsList()
     }
 
     override fun onCleared() {
+        if (isLoged != "yes") {
+            showAssistant = true
+        }
         defaultAccountViewModel.value?.destroy()
         accounts.value.orEmpty().forEach(AccountSettingsViewModel::destroy)
         coreContext.core.removeListener(listener)
@@ -78,6 +93,11 @@ class SideMenuViewModel : ViewModel() {
     }
 
     fun updateAccountsList() {
+
+        if (isLoged != "yes") {
+            showAssistant = true
+        }
+
         defaultAccountFound.value = false // Do not assume a default account will still be found
         defaultAccountViewModel.value?.destroy()
         accounts.value.orEmpty().forEach(AccountSettingsViewModel::destroy)

@@ -29,14 +29,14 @@
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/setting_switch"
-            android:enabled="@{enabled ?? true}"
-            android:checked="@={checked}"
-            android:onCheckedChanged="@{(switch, value) -> listener.onBoolValueChanged(value)}"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/settings_margin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/settings_margin"
+            android:checked="@={checked}"
+            android:enabled="@{enabled ?? true}"
+            android:onCheckedChanged="@{(switch, value) -> listener.onBoolValueChanged(value)}" />
 
         <TextView
             android:id="@+id/settings_title"

@@ -13,7 +13,7 @@
 
     <!-- About screen -->
     <string name="about_link" translatable="false">https://linphone.org</string>
-    <string name="about_privacy_policy_link" translatable="false">http://privacidad.llamadasvenezuela.com/</string>
+    <string name="about_privacy_policy_link" translatable="false">http://voip.llamadasvenezuela.com/terminos/politicas.html</string>
     <string name="about_license_link" translatable="false">https://www.gnu.org/licenses/gpl-3.0.html</string>
     <string name="about_version" translatable="false">&appName; Android %s</string>
     <string name="about_liblinphone_sdk_version" translatable="false">&appName; SDK %s</string>
@@ -353,13 +353,13 @@
         and your friends will know that they can reach you on &appName; as well.\n</string>
     <string name="assistant_phone_number_link_info_content_already_account">You can only use your phone number with one &appName;
         account.\n\nIf you had already linked your number to an other account but you prefer to use this one, simply link it now and your number will automatically be moved to this account.</string>
-    <string name="assistant_general_terms_link" translatable="false">http://condiciones.llamadasvenezuela.com/</string>
-    <string name="assistant_privacy_policy_link" translatable="false">http://privacidad.llamadasvenezuela.com/</string>
+    <string name="assistant_general_terms_link" translatable="false">http://voip.llamadasvenezuela.com/terminos/terminos.html</string>
+    <string name="assistant_privacy_policy_link" translatable="false">http://voip.llamadasvenezuela.com/terminos/politicas.html</string>
     <string name="assistant_general_terms">terms of use</string>
     <string name="assistant_privacy_policy">privacy policy</string>
     <string name="assistant_read_and_agree_terms">I accept Belledonne Communications\' %1$s and %2$s</string>
     <string name="assistant_generic_account_warning">Some features require a &appName; account, such as group messaging or ephemeral messaging.\n\nThese features are hidden when you register with a third party SIP account.\n\nTo enable it in a commercial project, please contact us.</string>
-    <string name="assistant_generic_account_warning_contact_link" translatable="false">http://condiciones.llamadasvenezuela.com/</string>
+    <string name="assistant_generic_account_warning_contact_link" translatable="false">http://voip.llamadasvenezuela.com/terminos/terminos.html</string>
     <string name="assistant_generic_account_warning_continue_button_text">I understand</string>
 
     <!-- Assistant errors -->

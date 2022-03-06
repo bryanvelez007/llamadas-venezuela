@@ -51,6 +51,14 @@ class AssistantActivity : GenericActivity(), SnackBarActivity {
         requestPermissions(
             arrayOf(
                 Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.CAMERA,
+                Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.READ_PHONE_NUMBERS,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.MANAGE_OWN_CALLS,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_PHONE_STATE,
             ),
             EchoCancellerCalibrationFragment.RECORD_AUDIO_PERMISSION_REQUEST_CODE
         )

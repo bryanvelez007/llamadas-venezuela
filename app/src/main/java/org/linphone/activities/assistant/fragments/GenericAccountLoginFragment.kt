@@ -76,6 +76,7 @@ class GenericAccountLoginFragment : GenericFragment<AssistantGenericAccountLogin
                     val editor: SharedPreferences.Editor = sharedPreferences.edit()
                     editor.putString("username", miUser)
                     editor.putString("password", miPass)
+                    editor.putString("isLoged", "yes")
                     editor.apply()
                     editor.commit()
                     requireActivity().finish()

@@ -19,6 +19,9 @@
  */
 package org.linphone.activities.main.settings
 
+import android.widget.Toast
+import org.linphone.LinphoneApplication
+
 interface SettingListener {
     fun onClicked()
 
@@ -26,7 +29,9 @@ interface SettingListener {
 
     fun onTextValueChanged(newValue: String)
 
-    fun onBoolValueChanged(newValue: Boolean)
+    fun onBoolValueChanged(newValue: Boolean) {
+        Toast.makeText(LinphoneApplication.coreContext.context, "Listener Activated", Toast.LENGTH_SHORT).show()
+    }
 
     fun onListValueChanged(position: Int)
 }
