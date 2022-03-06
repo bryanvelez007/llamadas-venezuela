@@ -359,6 +359,7 @@ class NotificationsManager(private val context: Context) {
     }
 
     fun stopForegroundNotificationIfPossible() {
+        stopForegroundNotification()
         if (service != null && currentForegroundServiceNotificationId == SERVICE_NOTIF_ID && !corePreferences.keepServiceAlive) {
             Log.i("[Notifications Manager] Stopping auto-started service notification [$currentForegroundServiceNotificationId]")
             stopForegroundNotification()

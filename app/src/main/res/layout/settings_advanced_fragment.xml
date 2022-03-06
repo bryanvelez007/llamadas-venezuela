@@ -120,13 +120,13 @@
                     linphone:title="@{@string/advanced_settings_background_mode_title}"
                     linphone:subtitle="@{@string/advanced_settings_background_mode_summary}"
                     linphone:listener="@{viewModel.backgroundModeListener}"
-                    linphone:checked="false"/>
+                    linphone:checked="@={viewModel.backgroundMode}"/>
 
                 <include
                     layout="@layout/settings_widget_switch"
                     linphone:title="@{@string/advanced_settings_auto_start_title}"
                     linphone:listener="@{viewModel.autoStartListener}"
-                    linphone:checked="false"/>
+                    linphone:checked="@={viewModel.autoStart}"/>
 
                 <include
                     layout="@layout/settings_widget_list"
