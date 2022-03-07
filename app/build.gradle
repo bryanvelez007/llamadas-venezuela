@@ -103,7 +103,7 @@ android {
             outputFileName = "linphone-android-${variant.buildType.name}-${project.version}.apk"
         }
 
-        var enableFirebaseService = "false"
+        var enableFirebaseService = "true"
         if (firebaseEnabled) {
             enableFirebaseService = "true"
         }
@@ -147,9 +147,9 @@ android {
             resValue "string", "file_provider", getPackageName() + ".fileprovider"
             resValue "string", "linphone_address_mime_type", "vnd.android.cursor.item/vnd." + getPackageName() + ".provider.sip_address"
 
-            if (!firebaseEnabled) {
+
                 resValue "string", "gcm_defaultSenderId", "none"
-            }
+
 
             resValue "bool", "crashlytics_enabled", "false"
         }
@@ -178,9 +178,9 @@ android {
             resValue "string", "linphone_address_mime_type", "vnd.android.cursor.item/vnd." + getPackageName() + ".provider.sip_address"
             resValue "bool", "crashlytics_enabled", crashlyticsEnabled.toString()
 
-            if (!firebaseEnabled) {
+
                 resValue "string", "gcm_defaultSenderId", "none"
-            }
+
 
             if (crashlyticsEnabled) {
                 firebaseCrashlytics {
@@ -244,14 +244,15 @@ dependencies {
     implementation 'com.android.volley:volley:1.2.1'
 
     implementation platform('com.google.firebase:firebase-bom:26.4.0')
+
     if (crashlyticsEnabled) {
         implementation 'com.google.firebase:firebase-crashlytics-ndk'
     } else {
         compileOnly 'com.google.firebase:firebase-crashlytics-ndk'
     }
-    if (firebaseEnabled) {
+
         implementation 'com.google.firebase:firebase-messaging'
-    }
+
 
     implementation 'org.linphone:linphone-sdk-android:5.2+'
 

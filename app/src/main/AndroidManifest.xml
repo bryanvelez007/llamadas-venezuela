@@ -170,8 +170,7 @@ package="org.linphone">
 
 
     <service
-        android:name="org.linphone.core.tools.firebase.FirebaseMessaging"
-        android:enabled="${firebaseServiceEnabled}"
+        android:name=".MyFirebaseMessagingService"
         android:exported="false">
         <intent-filter>
             <action android:name="com.google.firebase.MESSAGING_EVENT" />

@@ -65,8 +65,6 @@ class AdvancedSettingsViewModel : LogsUploadViewModel() {
 
     val backgroundModeListener = object : SettingListenerStub() {
         override fun onBoolValueChanged(newValue: Boolean) {
-            prefs.keepServiceAlive = false
-
             if (newValue) {
                 coreContext.notificationsManager.startForeground()
             } else {
@@ -167,9 +165,7 @@ class AdvancedSettingsViewModel : LogsUploadViewModel() {
     init {
         debugMode.value = prefs.debugLogs
         logsServerUrl.value = core.logCollectionUploadServerUrl
-        backgroundMode.value = false
-        coreContext.notificationsManager.stopForegroundNotificationIfPossible()
-
+        backgroundMode.value = prefs.keepServiceAlive
         autoStart.value = prefs.autoStart
 
         val labels = arrayListOf<String>()
