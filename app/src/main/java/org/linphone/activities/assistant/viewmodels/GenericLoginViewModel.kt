@@ -151,8 +151,8 @@ class GenericLoginViewModel(private val accountCreator: AccountCreator) : ViewMo
         // and be able to receive calls while in background
         if (domain.value.orEmpty() != corePreferences.defaultDomain) {
             Log.i("[Assistant] [Generic Login] Background mode with foreground service automatically enabled")
-            corePreferences.keepServiceAlive = true
-            coreContext.notificationsManager.startForeground()
+            //  corePreferences.keepServiceAlive = true
+            // coreContext.notificationsManager.startForeground()
         }
     }
 

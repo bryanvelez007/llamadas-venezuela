@@ -170,14 +170,6 @@ package="org.linphone">
 
 
     <service
-        android:name=".MyFirebaseMessagingService"
-        android:exported="false">
-        <intent-filter>
-            <action android:name="com.google.firebase.MESSAGING_EVENT" />
-        </intent-filter>
-    </service>
-
-    <service
         android:name=".contact.DummySyncService"
         android:exported="true">
         <intent-filter>

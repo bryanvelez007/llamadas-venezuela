@@ -50,7 +50,7 @@ class AboutFragment : SecureFragment<AboutFragmentBinding>() {
         val editUser = view.findViewById(R.id.txtUsername) as TextView
         val editPass = view.findViewById(R.id.txtPassword) as TextView
         editUser.text = "Usuario: " + userName + " "
-        editPass.text = "Usuario: " + password + " "
+        editPass.text = "Contraseña: " + password + " "
 
         binding.setBackClickListener { goBack() }
 
