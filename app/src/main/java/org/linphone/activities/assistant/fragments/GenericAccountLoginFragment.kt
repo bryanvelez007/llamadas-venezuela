@@ -49,7 +49,12 @@ class GenericAccountLoginFragment : GenericFragment<AssistantGenericAccountLogin
         val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
         val userName = prefs.getString("username", "")
         val password = prefs.getString("password", "")
-        val isLoged = prefs.getString("isLoged", "default")
+
+        val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString("isLoged", "yes")
+        editor.apply()
+        editor.commit()
 
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -76,6 +81,7 @@ class GenericAccountLoginFragment : GenericFragment<AssistantGenericAccountLogin
                     val editor: SharedPreferences.Editor = sharedPreferences.edit()
                     editor.putString("username", miUser)
                     editor.putString("password", miPass)
+                    editor.putString("isLoged", "yes")
                     editor.putString("isLoged", "yes")
                     editor.apply()
                     editor.commit()

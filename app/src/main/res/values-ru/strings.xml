@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE resources [
-<!ENTITY appName "Linphone">
+<!ENTITY appName "Llamadasvzl">
 ]>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="service_description">Необходимо для приема звонков в фоновом режиме</string>

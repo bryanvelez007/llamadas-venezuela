@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<!DOCTYPE resources [<!ENTITY appName "Linphone">]>
+<!DOCTYPE resources [<!ENTITY appName "Llamadasvzl">]>
 
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name" translatable="false">&appName;</string>

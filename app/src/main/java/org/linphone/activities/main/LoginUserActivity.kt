@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import org.linphone.R
 import org.linphone.activities.GenericActivity
 
@@ -36,12 +35,10 @@ class LoginUserActivity : GenericActivity() {
         }
 
         buttonSignIn.setOnClickListener {
-            Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this@LoginUserActivity, MainActivity::class.java))
         }
 
         buttonSignUp.setOnClickListener {
-            Toast.makeText(this, "Register", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this@LoginUserActivity, RegisterUserActivity::class.java))
         }
     }

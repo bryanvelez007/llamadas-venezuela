@@ -21,7 +21,6 @@ package org.linphone.activities.voip.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.navigation.navGraphViewModels
 import org.linphone.R
 import org.linphone.activities.GenericFragment
@@ -65,7 +64,6 @@ class ConferenceParticipantsFragment : GenericFragment<VoipConferenceParticipant
                 } else {
                     getString(R.string.conference_admin_unset).format(participantName)
                 }
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
         }
 

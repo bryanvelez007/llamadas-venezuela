@@ -18,7 +18,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package org.linphone.activities.main.settings.viewmodels
-
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.MutableLiveData
 import java.lang.NumberFormatException
@@ -223,7 +222,7 @@ class AudioSettingsViewModel : GenericSettingsViewModel() {
                 labels.add(audioDevice.id)
                 values.add(audioDevice)
                 if (audioDevice.id == default.id) {
-                    inputAudioDeviceIndex.value = 2
+                    inputAudioDeviceIndex.value = index
                 }
                 index += 1
             }

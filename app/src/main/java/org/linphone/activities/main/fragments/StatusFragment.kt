@@ -24,7 +24,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import org.linphone.LinphoneApplication.Companion.coreContext
 import org.linphone.R
@@ -95,8 +94,6 @@ class StatusFragment : GenericFragment<StatusFragmentBinding>() {
         }
 
         if (RegistrationState.Failed == state) {
-            Toast.makeText(activity, "FAILED" + state, Toast.LENGTH_SHORT).show()
-
             val intent = Intent(activity, AssistantActivity::class.java)
             startActivity(intent)
         }

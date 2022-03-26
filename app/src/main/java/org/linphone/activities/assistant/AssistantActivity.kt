@@ -20,8 +20,10 @@
 package org.linphone.activities.assistant
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
@@ -31,6 +33,7 @@ import org.linphone.activities.GenericActivity
 import org.linphone.activities.SnackBarActivity
 import org.linphone.activities.assistant.fragments.EchoCancellerCalibrationFragment
 import org.linphone.activities.assistant.viewmodels.SharedAssistantViewModel
+import org.linphone.activities.main.MainActivity
 
 class AssistantActivity : GenericActivity(), SnackBarActivity {
     private lateinit var sharedViewModel: SharedAssistantViewModel
@@ -47,7 +50,6 @@ class AssistantActivity : GenericActivity(), SnackBarActivity {
 
         corePreferences.firstStart = false
 
-        Toast.makeText(this@AssistantActivity, "" + EchoCancellerCalibrationFragment.RECORD_AUDIO_PERMISSION_REQUEST_CODE, Toast.LENGTH_SHORT).show()
         requestPermissions(
             arrayOf(
                 Manifest.permission.RECORD_AUDIO,
@@ -60,6 +62,16 @@ class AssistantActivity : GenericActivity(), SnackBarActivity {
             ),
             EchoCancellerCalibrationFragment.RECORD_AUDIO_PERMISSION_REQUEST_CODE
         )
+
+        val sharedPrefFile = packageName + "_preferences"
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        val isLoged = sharedPreferences.getString("isLoged", "default")
+
+        if (isLoged == "yes") {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     /*

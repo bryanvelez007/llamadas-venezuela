@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "219538989856",
+    "firebase_url": "https://llamadas-venezuela-default-rtdb.firebaseio.com",
     "project_id": "llamadas-venezuela",
     "storage_bucket": "llamadas-venezuela.appspot.com"
   },
@@ -10,6 +11,35 @@
         "mobilesdk_app_id": "1:219538989856:android:501cfaa86ac8823e39ed45",
         "android_client_info": {
           "package_name": "org.linphone.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "219538989856-2mot1rrl9tcls5t6hkscl9sstikoq0f9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNrO_hRJ9kLx1KvChi_XsLA_5BsaZtOsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "219538989856-2mot1rrl9tcls5t6hkscl9sstikoq0f9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219538989856:android:b80778235c87f92139ed45",
+        "android_client_info": {
+          "package_name": "org.llamadasvzl"
         }
       },
       "oauth_client": [

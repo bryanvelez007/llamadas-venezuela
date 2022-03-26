@@ -104,12 +104,6 @@ class AudioSettingsFragment : GenericSettingFragment<SettingsAudioFragmentBindin
             binding.setVariable(BR.title, payload.mimeType)
             binding.setVariable(BR.subtitle, "${payload.clockRate} Hz")
             binding.setVariable(BR.checked, payload.enabled())
-
-            /*
-            if (payload.mimeType == "GSM") {
-                binding.setVariable(BR.checked, true)
-            }
-*/
             binding.setVariable(
                 BR.listener,
                 object : SettingListenerStub() {

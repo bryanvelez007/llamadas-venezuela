@@ -20,7 +20,6 @@
 package org.linphone.activities.voip.data
 
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import java.util.*
@@ -60,8 +59,6 @@ open class CallData(val call: Call) : GenericContactData(call.remoteAddress) {
 
     private val listener = object : CallListenerStub() {
         override fun onStateChanged(call: Call, state: Call.State, message: String) {
-
-            Toast.makeText(coreContext.context, call.remoteAddress.asStringUriOnly(), Toast.LENGTH_SHORT).show()
 
             if (call != this@CallData.call) return
             Log.i("[Call] State changed: $state")
