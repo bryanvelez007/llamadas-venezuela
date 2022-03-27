@@ -69,6 +69,7 @@
     <string name="status_in_progress">Connection in progress</string>
     <string name="status_error">Connection failed</string>
 
+    <string name="para_brobar_eliminar">Eliminar esto</string>
     <!-- Side menu -->
     <string name="no_account_configured">No account configured</string>
     <string name="about">About</string>

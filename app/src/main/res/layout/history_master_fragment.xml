@@ -56,13 +56,48 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:visibility="invisible"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2">
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/button_background_drawable"
+                        android:contentDescription="@string/content_description_show_missed_calls"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.showOnlyMissedCallLogs()}"
+                        android:padding="15dp"
+                        android:src="@drawable/history_missed" />
+
+                    <View
+                        android:visibility="@{viewModel.filter == CallLogsFilter.MISSED ? View.VISIBLE : View.GONE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="?attr/accentColor" />
+
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
-                    android:visibility="@{viewModel.showConferencesFilter ? View.VISIBLE : View.INVISIBLE}">
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/button_background_drawable"
+                        android:contentDescription="@string/content_description_show_missed_calls"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.showOnlyConferenceCallLogs()}"
+                        android:padding="8dp"
+                        android:src="@drawable/icon_video_conf_new" />
 
                     <View
                         android:visibility="@{viewModel.filter == CallLogsFilter.CONFERENCE ? View.VISIBLE : View.GONE}"
@@ -80,7 +115,7 @@
 
                 <ImageView
                     android:onClick="@{editClickListener}"
-                    android:enabled="@{!viewModel.displayedCallLogs.empty}"
+                    android:enabled="@{!viewModel.callLogs.empty}"
                     android:contentDescription="@string/content_description_enter_edition_mode"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -111,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/no_call_history"
-                android:visibility="@{viewModel.displayedCallLogs.empty &amp;&amp; viewModel.filter == CallLogsFilter.ALL ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{viewModel.callLogs.empty &amp;&amp; viewModel.filter == CallLogsFilter.ALL ? View.VISIBLE : View.GONE}" />
 
             <TextView
                 style="@style/empty_list_font"
@@ -119,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/no_missed_call_history"
-                android:visibility="@{viewModel.displayedCallLogs.empty &amp;&amp; viewModel.filter == CallLogsFilter.MISSED ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{viewModel.callLogs.empty &amp;&amp; viewModel.filter == CallLogsFilter.MISSED ? View.VISIBLE : View.GONE}" />
 
             <TextView
                 style="@style/empty_list_font"
@@ -127,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/no_conference_call_history"
-                android:visibility="@{viewModel.displayedCallLogs.empty &amp;&amp; viewModel.filter == CallLogsFilter.CONFERENCE ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{viewModel.callLogs.empty &amp;&amp; viewModel.filter == CallLogsFilter.CONFERENCE ? View.VISIBLE : View.GONE}" />
 
             <View
                 android:layout_width="1dp"

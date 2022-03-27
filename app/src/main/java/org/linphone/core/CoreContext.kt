@@ -276,7 +276,7 @@ class CoreContext(val context: Context, coreConfig: Config) {
         Log.i("[Context] Ready")
     }
 
-    fun start(isPush: Boolean = false) {
+    fun start() {
         Log.i("[Context] Starting")
 
         core.addListener(listener)
@@ -292,11 +292,6 @@ class CoreContext(val context: Context, coreConfig: Config) {
                 Log.w("[Context] Can't create Telecom Helper, permissions have been revoked")
                 corePreferences.useTelecomManager = false
             }
-        }
-
-        if (isPush) {
-            Log.i("[Context] Push received, assume in background")
-            core.enterBackground()
         }
 
         configureCore()
@@ -555,7 +550,6 @@ class CoreContext(val context: Context, coreConfig: Config) {
 
     fun startCall(to: String) {
         var stringAddress = to
-
         if (android.util.Patterns.PHONE.matcher(to).matches()) {
             val contact: Contact? = contactsManager.findContactByPhoneNumber(to)
             val alias = contact?.getContactForPhoneNumberOrAddress(to)
@@ -581,7 +575,6 @@ class CoreContext(val context: Context, coreConfig: Config) {
         forceZRTP: Boolean = false,
         localAddress: Address? = null
     ) {
-
         if (!core.isNetworkReachable) {
             Log.e("[Context] Network unreachable, abort outgoing call")
             callErrorMessageResourceId.value = Event(context.getString(R.string.call_error_network_unreachable))
@@ -605,11 +598,14 @@ class CoreContext(val context: Context, coreConfig: Config) {
         params.recordFile = LinphoneUtils.getRecordingFilePathForAddress(address)
 
         if (localAddress != null) {
-            params.proxyConfig = core.proxyConfigList.find { proxyConfig ->
-                proxyConfig.identityAddress?.weakEqual(localAddress) ?: false
+            val account = core.accountList.find { account ->
+                account.params.identityAddress?.weakEqual(localAddress) ?: false
             }
-            if (params.proxyConfig != null) {
-                Log.i("[Context] Using proxy config matching address ${localAddress.asStringUriOnly()} as From")
+            if (account != null) {
+                params.account = account
+                Log.i("[Context] Using account matching address ${localAddress.asStringUriOnly()} as From")
+            } else {
+                Log.e("[Context] Failed to find account matching address ${localAddress.asStringUriOnly()}")
             }
         }
 

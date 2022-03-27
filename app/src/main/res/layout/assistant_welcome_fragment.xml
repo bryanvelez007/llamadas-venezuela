@@ -113,6 +113,16 @@
                         android:textColor="@drawable/assistant_button_text_color"
                         android:visibility="@{viewModel.showGenericLogin ? View.VISIBLE : View.GONE}" />
 
+                    <TextView
+                        android:id="@+id/userCreated"
+                        android:layout_width="match_parent"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:text="Ya tienes un usuario creado, por favor inicia sesion"
+                        android:textColor="#fff"
+                        />
                 </GridLayout>
 
             </LinearLayout>
