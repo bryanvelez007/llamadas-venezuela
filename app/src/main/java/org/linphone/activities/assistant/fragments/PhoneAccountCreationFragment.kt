@@ -20,6 +20,7 @@
 package org.linphone.activities.assistant.fragments
 
 import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
@@ -31,7 +32,6 @@ import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import org.linphone.R
@@ -81,8 +81,8 @@ class PhoneAccountCreationFragment :
 
         // navigateToPhoneAccountValidation()
 
-        val btnFinalRegister = view.findViewById(R.id.btnGoToSignIn) as Button
-        btnFinalRegister.visibility = View.INVISIBLE
+        // val btnFinalRegister = view.findViewById(R.id.btnGoToSignIn) as Button
+        // btnFinalRegister.visibility = View.INVISIBLE
 
         val myWebView: WebView = view.findViewById(R.id.WebView1)
 
@@ -116,7 +116,12 @@ class PhoneAccountCreationFragment :
         // navigateToPhoneAccountValidation()
 
         binding.setInfoClickListener {
-            navigateToPhoneAccountValidation()
+            // navigateToPhoneAccountValidation()
+            activity?.let {
+                val intent = Intent(it, AssistantActivity::class.java)
+                it.startActivity(intent)
+                it.finish()
+            }
         }
 
         binding.setSelectCountryClickListener {

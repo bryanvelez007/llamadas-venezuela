@@ -164,7 +164,7 @@ class AdvancedSettingsViewModel : LogsUploadViewModel() {
     val goToAndroidSettingsEvent = MutableLiveData<Event<Boolean>>()
 
     init {
-        debugMode.value = prefs.debugLogs
+        debugMode.value = false
         logsServerUrl.value = core.logCollectionUploadServerUrl
         backgroundMode.value = false
         autoStart.value = prefs.autoStart

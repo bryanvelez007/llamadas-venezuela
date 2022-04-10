@@ -17,7 +17,7 @@
     <string name="assistant_choose_country_title">Nombre del país o prefijo</string>
     <string name="quit">Salir</string>
     <string name="history_calls_list">Llamadas</string>
-    <string name="history_delete_one_dialog">Quieres borrar esta grabación\?</string>
+    <string name="history_delete_one_dialog">¿Seguro que quiere borrar?</string>
     <string name="contact_send_sms_invite_text">Hola, únete a mí en &appName;! Puedes descargarlo gratis en%s</string>
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
@@ -49,7 +49,7 @@
     <string name="settings">Configuraciones</string>
     <string name="no_call_history">No hay llamadas en el historial</string>
     <string name="no_missed_call_history">No hay llamadas perdidas en el historial</string>
-    <string name="history_delete_many_dialog">Quieres borrar estas grabaciones\?</string>
+    <string name="history_delete_many_dialog">¿Seguro que quieres borrar?</string>
     <string name="contact_invite_friend">Invitar</string>
     <string name="no_contact">No hay contactos en el directorio.</string>
     <string name="no_sip_contact">No hay contactos SIP en el directorio.</string>

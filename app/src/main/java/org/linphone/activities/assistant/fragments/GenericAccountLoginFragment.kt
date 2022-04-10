@@ -25,6 +25,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.assistant_generic_account_login_fragment.*
 import org.linphone.LinphoneApplication.Companion.coreContext
 import org.linphone.R
 import org.linphone.activities.GenericFragment
@@ -49,12 +50,6 @@ class GenericAccountLoginFragment : GenericFragment<AssistantGenericAccountLogin
         val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
         val userName = prefs.getString("username", "")
         val password = prefs.getString("password", "")
-
-        val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
-        val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putString("isLoged", "yes")
-        editor.apply()
-        editor.commit()
 
         binding.lifecycleOwner = viewLifecycleOwner
 

@@ -27,6 +27,8 @@ import android.os.Bundle
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.assistant_activity.*
+import kotlinx.android.synthetic.main.assistant_welcome_fragment.*
 import org.linphone.LinphoneApplication.Companion.corePreferences
 import org.linphone.R
 import org.linphone.activities.GenericActivity
@@ -66,6 +68,7 @@ class AssistantActivity : GenericActivity(), SnackBarActivity {
         val sharedPrefFile = packageName + "_preferences"
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val isLoged = sharedPreferences.getString("isLoged", "default")
+        val isRegister = sharedPreferences.getString("username", "default")
 
         if (isLoged == "yes") {
             val intent = Intent(this, MainActivity::class.java)

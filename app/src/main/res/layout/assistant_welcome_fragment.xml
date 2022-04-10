@@ -67,6 +67,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/txtPrivacy"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="@={viewModel.termsAndPrivacyAccepted}"
@@ -88,13 +89,11 @@
                         android:layout_margin="20dp"
                         android:layout_marginTop="80dp"
                         android:background="@drawable/assistant_button"
-                        android:enabled="@{viewModel.termsAndPrivacyAccepted}"
                         android:gravity="center"
                         android:onClick="@{createAccountClickListener}"
                         android:padding="10dp"
                         android:text="Crear Usuario"
-                        android:textColor="@drawable/assistant_button_text_color"
-                        android:visibility="@{viewModel.showCreateAccount ? View.VISIBLE : View.GONE}" />
+                        android:textColor="#5D0CED" />
 
 
                     <TextView
@@ -105,13 +104,11 @@
                         android:layout_gravity="fill"
                         android:layout_margin="20dp"
                         android:background="@drawable/assistant_button"
-                        android:enabled="@{viewModel.termsAndPrivacyAccepted}"
                         android:gravity="center"
                         android:onClick="@{genericAccountLoginClickListener}"
                         android:padding="10dp"
                         android:text="Iniciar sesion"
-                        android:textColor="@drawable/assistant_button_text_color"
-                        android:visibility="@{viewModel.showGenericLogin ? View.VISIBLE : View.GONE}" />
+                        android:textColor="#5D0CED"/>
 
                     <TextView
                         android:id="@+id/userCreated"
@@ -121,7 +118,7 @@
                         android:gravity="center"
                         android:layout_height="wrap_content"
                         android:text="Ya tienes un usuario creado, por favor inicia sesion"
-                        android:textColor="#fff"
+                        android:textColor="#FF0000"
                         />
                 </GridLayout>
 

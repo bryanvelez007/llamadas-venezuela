@@ -22,13 +22,17 @@ package org.linphone.activities.assistant.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import java.util.regex.Pattern
+import kotlinx.android.synthetic.main.assistant_activity.*
+import kotlinx.android.synthetic.main.assistant_welcome_fragment.*
 import org.linphone.LinphoneApplication.Companion.corePreferences
 import org.linphone.R
 import org.linphone.activities.*
@@ -79,6 +83,40 @@ class WelcomeFragment : GenericFragment<AssistantWelcomeFragmentBinding>() {
 
         onBackPressedCallback.isEnabled = true
 
+        val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
+        val isRegister = prefs.getString("username", "default")
+
+        val termAndCondition = corePreferences.readAndAgreeTermsAndPrivacy
+
+        if (termAndCondition == true) {
+            if (isRegister == "default") {
+                generic_connection.visibility = View.VISIBLE
+                account_creation.visibility = View.VISIBLE
+                account_creation.isEnabled = true
+                generic_connection.isEnabled = true
+                userCreated.visibility = View.INVISIBLE
+            } else {
+                generic_connection.visibility = View.VISIBLE
+                account_creation.isEnabled = false
+                generic_connection.isEnabled = true
+                userCreated.visibility = View.VISIBLE
+            }
+        } else {
+            account_creation.isEnabled = false
+            generic_connection.isEnabled = false
+            userCreated.visibility = View.INVISIBLE
+            userCreated.isEnabled = false
+        }
+
+        txtPrivacy.setOnClickListener {
+
+            Toast.makeText(requireContext(), "Click", Toast.LENGTH_SHORT).show()
+            generic_connection.visibility = View.VISIBLE
+            account_creation.visibility = View.VISIBLE
+            account_creation.isEnabled = true
+            generic_connection.isEnabled = true
+            userCreated.visibility = View.INVISIBLE
+        }
         setUpTermsAndPrivacyLinks()
     }
 

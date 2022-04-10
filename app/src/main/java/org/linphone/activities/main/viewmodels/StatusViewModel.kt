@@ -35,7 +35,6 @@ open class StatusViewModel : ViewModel() {
     val voiceMailCount = MutableLiveData<Int>()
 
     private val listener: CoreListenerStub = object : CoreListenerStub() {
-
         override fun onAccountRegistrationStateChanged(
             core: Core,
             account: Account,
@@ -82,7 +81,6 @@ open class StatusViewModel : ViewModel() {
         if (defaultAccount != null) {
             state = defaultAccount.state
         }
-
         updateDefaultAccountRegistrationStatus(state)
     }
 

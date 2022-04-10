@@ -294,7 +294,6 @@ class ConferenceViewModel : ViewModel() {
         Log.i("[Conference] Trying to change conference layout to $layout")
         val conference = conference.value
         if (conference != null) {
-            conference.layout = layout
             updateConferenceLayout(conference)
         } else {
             Log.e("[Conference] Conference is null in ConferenceViewModel")
@@ -302,15 +301,8 @@ class ConferenceViewModel : ViewModel() {
     }
 
     private fun updateConferenceLayout(conference: Conference) {
-        val layout = conference.layout
-        conferenceMosaicDisplayMode.value = layout == ConferenceLayout.Grid
-        conferenceActiveSpeakerDisplayMode.value = layout == ConferenceLayout.ActiveSpeaker
-        conferenceAudioOnlyDisplayMode.value = layout == ConferenceLayout.Legacy // TODO: FIXME: Use AudioOnly layout
-
         val list = sortDevicesDataList(conferenceParticipantDevices.value.orEmpty())
         conferenceParticipantDevices.value = list
-
-        Log.i("[Conference] Conference current layout is: $layout")
     }
 
     private fun terminateConference(conference: Conference) {

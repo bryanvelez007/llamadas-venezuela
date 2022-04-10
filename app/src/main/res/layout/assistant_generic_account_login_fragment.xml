@@ -12,9 +12,11 @@
             type="org.linphone.activities.assistant.viewmodels.GenericLoginViewModel" />
     </data>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/top_bar_fragment"
@@ -22,192 +24,174 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/main_activity_top_bar_size"
             android:layout_alignParentTop="true"
+            bind:layout_constraintTop_toTopOf="parent"
             tools:layout="@layout/assistant_top_bar_fragment" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/icon_main_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        bind:layout_constraintTop_toBottomOf="@+id/top_bar_fragment" />
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#fff"
-                tools:context=".activities.main.LoginUserActivity">
+                android:layout_height="50dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="40dp"
+                android:hint="@string/username"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toBottomOf="@+id/imageView">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="36dp"
-                    android:src="@drawable/icon_main_logo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="40dp"
-                    android:hint="@string/username"
-                    bind:layout_constraintEnd_toEndOf="parent"
-                    bind:layout_constraintStart_toStartOf="parent"
-                    bind:layout_constraintTop_toBottomOf="@+id/imageView">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/transparent_color"
-                        android:imeOptions="actionNext"
-                        android:inputType="text|textNoSuggestions"
-                        android:singleLine="true"
-                        android:text="@={viewModel.username}"
-                        android:textColor="#000"
-                        android:textColorHint="#009688" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout2"
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="40dp"
-                    android:hint="@string/password"
-                    app:endIconMode="password_toggle"
-                    bind:layout_constraintEnd_toEndOf="parent"
-                    bind:layout_constraintStart_toStartOf="parent"
-                    bind:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+                    android:background="@color/transparent_color"
+                    android:imeOptions="actionNext"
+                    android:inputType="text|textNoSuggestions"
+                    android:singleLine="true"
+                    android:text="@={viewModel.username}"
+                    android:textColor="#3F51B5"
+                    android:textColorHint="#009688" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/transparent_color"
-                        android:imeOptions="actionNext"
-                        android:inputType="textPassword"
-                        android:singleLine="true"
-                        android:text="@={viewModel.password}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="40dp"
+                android:hint="@string/password"
+                app:endIconMode="password_toggle"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="50dp"
-                    android:background="#FF5722"
-                    android:backgroundTint="#FF5722"
-                    android:enabled="@{viewModel.loginEnabled, default=false}"
-                    android:onClick="@{() -> viewModel.createProxyConfig()}"
-                    android:padding="10dp"
-                    android:text="Ingresar"
-                    android:textColor="#fff"
-                    bind:layout_constraintEnd_toEndOf="parent"
-                    bind:layout_constraintStart_toStartOf="parent"
-                    bind:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout3"
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/domain"
-                    android:visibility="invisible"
-                    bind:layout_constraintEnd_toEndOf="parent"
-                    bind:layout_constraintStart_toStartOf="parent"
-                    bind:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+                    android:background="@color/transparent_color"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textColor="#3F51B5"
+                    android:text="@={viewModel.password}" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/transparent_color"
-                        android:imeOptions="actionNext"
-                        android:inputType="textUri"
-                        android:singleLine="true"
-                        android:text="@={viewModel.domain}"
-                        bind:layout_constraintBottom_toBottomOf="parent"
-                        bind:layout_constraintEnd_toEndOf="parent"
-                        bind:layout_constraintStart_toStartOf="parent" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/background_login"
+                android:enabled="@{viewModel.loginEnabled, default=false}"
+                android:onClick="@{() -> viewModel.createProxyConfig()}"
+                android:padding="10dp"
+                android:text="Ingresar"
+                android:textColor="#3F51B5"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout4"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/domain"
+                android:visibility="invisible"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/assistant_display_name_optional"
-                    android:visibility="invisible"
+                    android:background="@color/transparent_color"
+                    android:imeOptions="actionNext"
+                    android:inputType="textUri"
+                    android:singleLine="true"
+                    android:text="@={viewModel.domain}"
                     bind:layout_constraintBottom_toBottomOf="parent"
                     bind:layout_constraintEnd_toEndOf="parent"
-                    bind:layout_constraintStart_toStartOf="parent">
+                    bind:layout_constraintStart_toStartOf="parent" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/transparent_color"
-                        android:imeOptions="actionDone"
-                        android:inputType="textPersonName"
-                        android:singleLine="true"
-                        android:text="@={viewModel.displayName}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/assistant_display_name_optional"
+                android:visibility="invisible"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent">
 
-                <RadioGroup
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
-                    bind:layout_constraintTop_toBottomOf="parent">
+                    android:background="@color/transparent_color"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPersonName"
+                    android:singleLine="true"
+                    android:text="@={viewModel.displayName}" />
 
-                    <TextView
-                        style="@style/assistant_input_field_header_font"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="@string/transport"
-                        android:textAllCaps="true"
-                        android:visibility="invisible" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:checked="@{viewModel.transport == TransportType.Udp}"
-                        android:onClick="@{() -> viewModel.setTransport(TransportType.Udp)}"
-                        android:text="@string/transport_udp"
-                        android:textColor="?attr/primaryTextColor"
-                        android:visibility="invisible" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                bind:layout_constraintTop_toBottomOf="parent">
 
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:checked="@{viewModel.transport == TransportType.Tcp}"
-                        android:onClick="@{() -> viewModel.setTransport(TransportType.Tcp)}"
-                        android:text="@string/transport_tcp"
-                        android:textColor="?attr/primaryTextColor"
-                        android:visibility="invisible" />
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:checked="@{viewModel.transport == TransportType.Udp}"
+                    android:onClick="@{() -> viewModel.setTransport(TransportType.Udp)}"
+                    android:text="@string/transport_udp"
+                    android:textColor="?attr/primaryTextColor"
+                    android:visibility="invisible" />
 
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:checked="@{viewModel.transport == TransportType.Tls}"
-                        android:onClick="@{() -> viewModel.setTransport(TransportType.Tls)}"
-                        android:text="@string/transport_tls"
-                        android:textColor="?attr/primaryTextColor"
-                        android:visibility="invisible" />
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:checked="@{viewModel.transport == TransportType.Tcp}"
+                    android:onClick="@{() -> viewModel.setTransport(TransportType.Tcp)}"
+                    android:text="@string/transport_tcp"
+                    android:textColor="?attr/primaryTextColor"
+                    android:visibility="invisible" />
 
-                </RadioGroup>
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:checked="@{viewModel.transport == TransportType.Tls}"
+                    android:onClick="@{() -> viewModel.setTransport(TransportType.Tls)}"
+                    android:text="@string/transport_tls"
+                    android:textColor="?attr/primaryTextColor"
+                    android:visibility="invisible" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </RadioGroup>
 
         <include
             layout="@layout/wait_layout"
             bind:visibility="@{viewModel.waitForServerAnswer}" />
 
-    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
